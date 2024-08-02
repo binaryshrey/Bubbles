@@ -1,7 +1,15 @@
-import React from "react";
+import React from 'react';
+import Home from './components/home/Home';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
-	return <div>Bubbles</div>;
-}
+const App = () => {
+  return (
+    <div>
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    </div>
+  );
+};
 
 export default App;
