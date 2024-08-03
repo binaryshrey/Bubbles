@@ -72,8 +72,8 @@ const Dashboard = ({ Component, home, albums, support, settings }) => {
                         Library
                       </p>
                       {library.map((item) => (
-                        <div key={item.name} className="flex justify-between items-center hover:bg-zinc-800  rounded-md curson-pointer">
-                          <p key={item.name} className="text-neutral-300  group flex items-center px-10 py-2 text-sm font-medium">
+                        <div key={item.name} className="flex justify-between items-center rounded-md">
+                          <p key={item.name} className="text-neutral-300 group flex items-center px-10 py-2 text-sm font-medium">
                             {item.name}
                           </p>
                           <Badge color="orange" className="mr-2 p-2">
@@ -132,7 +132,7 @@ const Dashboard = ({ Component, home, albums, support, settings }) => {
                   Library
                 </p>
                 {library.map((item) => (
-                  <div key={item.name} className="flex justify-between items-center hover:bg-zinc-800  rounded-md cursor-pointer">
+                  <div key={item.name} className="flex justify-between items-center rounded-md ">
                     <p key={item.name} className="text-neutral-300  group flex items-center px-10 py-2 text-sm font-medium">
                       {item.name}
                     </p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Card, Text } from '@radix-ui/themes';
 import { RiUploadCloudLine, RiAlbumLine, RiAddLine, RiFolderAddLine, RiSearchLine } from '@remixicon/react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../common/tabs';
 
 const DashboardHome = () => {
   return (
@@ -36,6 +37,22 @@ const DashboardHome = () => {
       </div>
 
       <p className="text-white font-semibold text-xl mt-12 mb-4">Library</p>
+      <Tabs defaultValue="viewall">
+        <TabsList className="bg-zinc-700 w-30">
+          <TabsTrigger value="viewall">View All</TabsTrigger>
+          <TabsTrigger value="fav">Favorites</TabsTrigger>
+          <TabsTrigger value="archived">Archived</TabsTrigger>
+        </TabsList>
+        <TabsContent value="viewall" className="text-white">
+          All your photos and albums will be displayed here.
+        </TabsContent>
+        <TabsContent value="fav" className="text-white">
+          Mark your favorite photos and albums here.
+        </TabsContent>
+        <TabsContent value="archived" className="text-white">
+          Your archived photos and albums will be displayed here
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
