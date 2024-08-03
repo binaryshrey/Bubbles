@@ -4,14 +4,14 @@ import logo from '../../assets/logo-light.svg';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { UserAuth } from '../hooks/AuthContext';
 import { Link } from 'react-router-dom';
-import { RiHome6Line, RiEarthLine, RiFolderLine, RiQuestionLine, RiSettingsLine } from '@remixicon/react';
+import { RiHome6Line, RiEarthLine, RiFolderLine, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
 import { Badge } from '@radix-ui/themes';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Dashboard = ({ Component, board, reports, support, settings }) => {
+const Dashboard = ({ Component, home, albums, support, settings }) => {
   const { googleSignIn, user } = UserAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [viewAllCount, setViewAllCount] = useState(0);
@@ -19,8 +19,8 @@ const Dashboard = ({ Component, board, reports, support, settings }) => {
   const [archivedCount, setArchivedCount] = useState(0);
 
   const navigation = [
-    { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: board },
-    { name: 'Publications', href: '/publications', icon: RiEarthLine, current: reports },
+    { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: home },
+    { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
   ];
 
   const navigationBottom = [
@@ -28,7 +28,7 @@ const Dashboard = ({ Component, board, reports, support, settings }) => {
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
   ];
 
-  const folders = [
+  const library = [
     { name: 'View All', count: viewAllCount },
     { name: 'Favorites', count: favoritesCount },
     { name: 'Archived', count: archivedCount },
@@ -69,9 +69,9 @@ const Dashboard = ({ Component, board, reports, support, settings }) => {
                       <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
                       <p className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-neutral-300">
                         <RiFolderLine className="mr-3 flex-shrink-0 h-4 w-4" aria-hidden="true" />
-                        Folders
+                        Library
                       </p>
-                      {folders.map((item) => (
+                      {library.map((item) => (
                         <div key={item.name} className="flex justify-between items-center hover:bg-zinc-800  rounded-md curson-pointer">
                           <p key={item.name} className="text-neutral-300  group flex items-center px-10 py-2 text-sm font-medium">
                             {item.name}
@@ -129,9 +129,9 @@ const Dashboard = ({ Component, board, reports, support, settings }) => {
                 <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
                 <p className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-neutral-300">
                   <RiFolderLine className="mr-3 flex-shrink-0 h-4 w-4" aria-hidden="true" />
-                  Folders
+                  Library
                 </p>
-                {folders.map((item) => (
+                {library.map((item) => (
                   <div key={item.name} className="flex justify-between items-center hover:bg-zinc-800  rounded-md cursor-pointer">
                     <p key={item.name} className="text-neutral-300  group flex items-center px-10 py-2 text-sm font-medium">
                       {item.name}
@@ -174,9 +174,9 @@ const Dashboard = ({ Component, board, reports, support, settings }) => {
             </button>
           </div>
           <main className="flex-1">
-            <div className="py-6">
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                <div className="py-4 hidden lg:block">
+            <div className="py-4">
+              <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6">
+                <div className="py-2 hidden lg:block">
                   <Component />
                 </div>
                 <div className="py-2 overflow-y-auto lg:hidden">

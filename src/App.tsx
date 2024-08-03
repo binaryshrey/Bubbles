@@ -37,7 +37,7 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
-                    <Dashboard Component={DashboardHome} board={true} reports={false} support={false} settings={false} />
+                    <Dashboard Component={DashboardHome} home={true} albums={false} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }
