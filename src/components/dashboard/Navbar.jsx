@@ -111,7 +111,7 @@ const Navbar = ({ Component, home, albums, support, settings }) => {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 ">
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-zinc-900 rounded-lg">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
@@ -173,7 +173,7 @@ const Navbar = ({ Component, home, albums, support, settings }) => {
               <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1">
+          <main className="flex-1 bg-black">
             <div className="py-4">
               <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6">
                 <div className="py-2 hidden lg:block">

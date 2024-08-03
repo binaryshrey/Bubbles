@@ -1,9 +1,15 @@
+import LibraryCard from '../../../common/LibraryCard';
 import React from 'react';
 
 const ViewAll = () => {
   return (
-    <div>
-      <p>ViewAll</p>
+    <div className="flex gap-8 flex-wrap">
+      <LibraryCard />
+      <LibraryCard />
+      <LibraryCard />
+      <LibraryCard />
+
+      <LibraryCard />
     </div>
   );
 };

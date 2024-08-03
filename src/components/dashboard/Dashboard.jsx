@@ -2,10 +2,11 @@ import React from 'react';
 import { Box, Card, Text } from '@radix-ui/themes';
 import { RiUploadCloudLine, RiAlbumLine, RiAddLine, RiFolderAddLine, RiSearchLine } from '@remixicon/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../common/tabs';
+import ViewAll from './library/ViewAll';
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="bg-black">
       <div className="flex justify-between items-center text-center">
         <p className="text-white font-semibold text-2xl">Dashboard</p>
         <div className="relative text-zinc-600 flex items-center text-center focus:outline-none">
@@ -38,13 +39,13 @@ const Dashboard = () => {
 
       <p className="text-white font-semibold text-xl mt-12 mb-4">Library</p>
       <Tabs defaultValue="viewall">
-        <TabsList className="bg-zinc-700 w-30">
+        <TabsList className="bg-zinc-800 w-30">
           <TabsTrigger value="viewall">View All</TabsTrigger>
           <TabsTrigger value="fav">Favorites</TabsTrigger>
           <TabsTrigger value="archived">Archived</TabsTrigger>
         </TabsList>
         <TabsContent value="viewall" className="text-white">
-          All your photos and albums will be displayed here.
+          <ViewAll />
         </TabsContent>
         <TabsContent value="fav" className="text-white">
           Mark your favorite photos and albums here.
