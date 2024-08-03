@@ -111,7 +111,7 @@ const Navbar = ({ Component, home, albums, support, settings }) => {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
+        <div className=" h-screen hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-zinc-900 rounded-lg">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">

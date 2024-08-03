@@ -3,6 +3,7 @@ import { Box, Card, Text } from '@radix-ui/themes';
 import { RiUploadCloudLine, RiAlbumLine, RiAddLine, RiFolderAddLine, RiSearchLine } from '@remixicon/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../common/tabs';
 import ViewAll from './library/ViewAll';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   return (
@@ -27,14 +28,16 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="w-56 bg-black border border-neutral-600 rounded-md cursor-pointer">
-          <div className="bg-black m-4">
-            <div>
-              <RiFolderAddLine className="mr-3 flex-shrink-0 h-6 w-6 text-neutral-600 mb-4" aria-hidden="true" />
-              <p className="text-white text-sm ml-1">New Album</p>
+        <Link to="/new-album">
+          <div className="w-56 bg-black border border-neutral-600 rounded-md cursor-pointer">
+            <div className="bg-black m-4">
+              <div>
+                <RiFolderAddLine className="mr-3 flex-shrink-0 h-6 w-6 text-neutral-600 mb-4" aria-hidden="true" />
+                <p className="text-white text-sm ml-1">New Album</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       <p className="text-white font-semibold text-xl mt-12 mb-4">Library</p>
