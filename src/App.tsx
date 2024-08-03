@@ -6,8 +6,8 @@ import ProtectedRoute from './components/utils/ProtectedRoute';
 
 const Login = React.lazy(() => import('./components/login/Login'));
 const Register = React.lazy(() => import('./components/register/Register'));
+const Navbar = React.lazy(() => import('./components/dashboard/Navbar'));
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
-const DashboardHome = React.lazy(() => import('./components/dashboard/DashboardHome'));
 
 const App = () => {
   return (
@@ -37,7 +37,7 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
-                    <Dashboard Component={DashboardHome} home={true} albums={false} support={false} settings={false} />
+                    <Navbar Component={Dashboard} home={true} albums={false} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }
