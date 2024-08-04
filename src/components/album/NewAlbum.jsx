@@ -121,7 +121,7 @@ const NewAlbum = () => {
           albumAuthor: email,
           albumTimestamp: new Date(),
           albumTimestampMilli: Date.now(),
-          albumTTEMilli: Date.now() + LINK_EXPIRE_TIME * 60 * 1000,
+          albumTTEMilli: Date.now() + process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME * 60 * 1000,
           albumURI: newAlbumURI,
         },
       };
@@ -250,7 +250,7 @@ const NewAlbum = () => {
                 <DialogContent className="sm:max-w-md">
                   <DialogHeader>
                     <DialogTitle className="text-white">Share link</DialogTitle>
-                    <DialogDescription className="text-zinc-600">Anyone who has this link will be able to view this.</DialogDescription>
+                    <DialogDescription className="text-zinc-600">Anyone who has this link will be able to view this for the next {LINK_EXPIRE_TIME}!</DialogDescription>
                   </DialogHeader>
                   <div className="flex items-center space-x-2">
                     <div className="grid flex-1 gap-2">

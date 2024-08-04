@@ -39,7 +39,7 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
-                    <Navbar Component={Dashboard} home={true} albums={false} support={false} settings={false} />
+                    <Navbar Component={Dashboard} home={true} albums={false} contacts={false} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }
@@ -49,7 +49,7 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
-                    <Navbar Component={NewAlbum} home={true} albums={false} support={false} settings={false} />
+                    <Navbar Component={NewAlbum} home={true} albums={false} contacts={false} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }
