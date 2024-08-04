@@ -6,6 +6,9 @@ import {
   addDoc,
   where
 } from 'firebase/firestore';
+import { storage } from './Firebase';
+import { ref, listAll } from "firebase/storage";
+
 
 export const imageFileTypes = [
   'jpg',
@@ -59,6 +62,42 @@ export const getFileType = (fileName) => {
   return fileTypeMap[extension] || 'Unknown';
 }
 
+
+
+export const fetchSavedAlbumFolders = async (emailID) => {
+  try {
+    const baseDirRef = ref(storage, '/')
+    // List all items in the base directory
+    const allFolders = await listAll(baseDirRef);
+    console.log('allFolders',allFolders)
+        
+    // Create a set to store unique folder names
+    const folderSet = new Set();
+
+    // Iterate over the items to extract folder names
+    allFolders.prefixes.forEach((itemRef) => {
+      const fullPath = itemRef._location.path_;
+      console.log('fullPath',fullPath)
+      const parts = fullPath.split(':');
+
+      // If the path has multiple parts, we can infer folder names
+      if (parts.length == 3) {
+          folderSet.add(parts[0]);
+        }
+    });
+
+    console.log('folderSet',folderSet)
+
+    // Convert the set to an array and update state
+    return(Array.from(folderSet));
+
+    } 
+    catch (err) {
+      // Handle errors
+      console.error('Error fetching folders:', err);
+      return [];
+    }
+}
 
 
 

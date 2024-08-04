@@ -1,15 +1,14 @@
-import LibraryCard from '../../../common/LibraryCard';
+import AlbumLibraryCard from './AlbumLibraryCard';
 import React from 'react';
 
 const ViewAll = () => {
   return (
     <div className="flex gap-8 flex-wrap">
-      <LibraryCard />
-      <LibraryCard />
-      <LibraryCard />
-      <LibraryCard />
-
-      <LibraryCard />
+      <AlbumLibraryCard />
+      <AlbumLibraryCard />
+      <AlbumLibraryCard />
+      <AlbumLibraryCard />
+      <AlbumLibraryCard />
     </div>
   );
 };
