@@ -4,15 +4,15 @@ import logo from '../../assets/logo-light.svg';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { UserAuth } from '../hooks/AuthContext';
 import { Link } from 'react-router-dom';
-import { RiHome6Line, RiEarthLine, RiFolderLine, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
+import { RiHome6Line, RiGroupLine, RiFolderLine, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
 import { Badge } from '@radix-ui/themes';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Navbar = ({ Component, home, albums, support, settings }) => {
-  const { googleSignIn, user } = UserAuth();
+const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
+  const { user } = UserAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [viewAllCount, setViewAllCount] = useState(0);
   const [favoritesCount, setFavoritesCount] = useState(0);
@@ -21,6 +21,7 @@ const Navbar = ({ Component, home, albums, support, settings }) => {
   const navigation = [
     { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: home },
     { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
+    { name: 'Shared Contacts', href: '/contacts', icon: RiGroupLine, current: contacts },
   ];
 
   const navigationBottom = [
@@ -111,7 +112,7 @@ const Navbar = ({ Component, home, albums, support, settings }) => {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
+        <div className=" h-screen hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-zinc-900 rounded-lg">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">

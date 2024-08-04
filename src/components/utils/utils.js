@@ -7,6 +7,60 @@ import {
   where
 } from 'firebase/firestore';
 
+export const imageFileTypes = [
+  'jpg',
+  'jpeg',
+  'png',
+  'gif',
+  'bmp',
+  'tiff',
+  'tif',
+  'svg',
+  'webp',
+  'heif',
+  'heic',
+  'raw',
+  'cr2',
+  'nef',
+  'arw',
+  'dng',
+  'ico',
+  'eps'
+];
+
+export const getFileType = (fileName) => {
+  if (typeof fileName !== 'string' || !fileName.includes('.')) {
+    return 'Unknown';
+  }
+
+  const extension = fileName.split('.').pop().toLowerCase();
+
+  const fileTypeMap = {
+    'jpg': 'Image',
+    'jpeg': 'Image',
+    'png': 'Image',
+    'gif': 'Image',
+    'bmp': 'Image',
+    'tiff': 'Image',
+    'tif': 'Image',
+    'svg': 'Image',
+    'webp': 'Image',
+    'heif': 'Image',
+    'heic': 'Image',
+    'raw': 'Image',
+    'cr2': 'Image',
+    'nef': 'Image',
+    'arw': 'Image',
+    'dng': 'Image',
+    'ico': 'Image',
+    'eps': 'Image',
+  };
+
+  return fileTypeMap[extension] || 'Unknown';
+}
+
+
+
 
 export const saveUserDataIfNewUser = async (user) => {
 

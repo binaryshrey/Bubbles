@@ -1,10 +1,20 @@
 import React from 'react';
-import { Box, Card, Text } from '@radix-ui/themes';
-import { RiUploadCloudLine, RiAlbumLine, RiAddLine, RiFolderAddLine, RiSearchLine } from '@remixicon/react';
+import { RiFolderAddLine, RiSearchLine, RiContactsLine } from '@remixicon/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../common/tabs';
 import ViewAll from './library/ViewAll';
+import { Link } from 'react-router-dom';
+import SnackAlert from '../../common/SnackAlert';
+import Favorites from './library/Favorites';
+import Archived from './library/Archived';
 
 const Dashboard = () => {
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const handleSnackbarOpen = () => {
+    setSnackbarOpen(true);
+  };
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
   return (
     <div className="bg-black">
       <div className="flex justify-between items-center text-center">
@@ -19,19 +29,21 @@ const Dashboard = () => {
       <div className="flex flex-shrink-0 border-t border-zinc-800 mt-4 mb-8"></div>
 
       <div className="flex gap-4">
-        <div className="w-56 bg-black border border-neutral-600 rounded-md cursor-pointer">
-          <div className="bg-black m-4">
-            <div>
-              <RiAddLine className="mr-3 flex-shrink-0 h-6 w-6 text-neutral-600 mb-4" aria-hidden="true" />
-              <p className="text-white text-sm ml-1">New Photo</p>
+        <Link to="/new-album">
+          <div className="w-56 bg-black border border-neutral-600 rounded-md cursor-pointer">
+            <div className="bg-black m-4">
+              <div>
+                <RiFolderAddLine className="mr-3 flex-shrink-0 h-6 w-6 text-neutral-600 mb-4" aria-hidden="true" />
+                <p className="text-white text-sm ml-1">New Album</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-56 bg-black border border-neutral-600 rounded-md cursor-pointer">
+        </Link>
+        <div className="w-56 bg-black border border-neutral-600 rounded-md cursor-pointer" onClick={handleSnackbarOpen}>
           <div className="bg-black m-4">
             <div>
-              <RiFolderAddLine className="mr-3 flex-shrink-0 h-6 w-6 text-neutral-600 mb-4" aria-hidden="true" />
-              <p className="text-white text-sm ml-1">New Album</p>
+              <RiContactsLine className="mr-3 flex-shrink-0 h-5 w-5 text-neutral-600 mb-4" aria-hidden="true" />
+              <p className="text-white text-sm ml-1">New Contact Card</p>
             </div>
           </div>
         </div>
@@ -48,12 +60,13 @@ const Dashboard = () => {
           <ViewAll />
         </TabsContent>
         <TabsContent value="fav" className="text-white">
-          Mark your favorite photos and albums here.
+          <Favorites />
         </TabsContent>
         <TabsContent value="archived" className="text-white">
-          Your archived photos and albums will be displayed here
+          <Archived />
         </TabsContent>
       </Tabs>
+      <SnackAlert open={snackbarOpen} message="Contacts Card Coming Soon!" severity="warning" onClose={handleSnackbarClose} />
     </div>
   );
 };
