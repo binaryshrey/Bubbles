@@ -1,24 +1,35 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import '../../styles/uploadAlbum.css';
 import { Input } from '../../common/input';
+import { storage } from '../utils/Firebase';
+import { Loader2, Copy } from 'lucide-react';
 import { getFileType } from '../utils/utils';
 import logo from '../../assets/logo-light.svg';
 import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
+import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { RiPencilFill, RiUploadCloud2Line, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const UploadAlbum = () => {
   // global vars
+  const { user } = UserAuth();
+  const albumID = uuidv4();
+  const albumURI = `https://bubbles-inc.vercel.app/albums/${albumID}`;
   const fileInputRef = useRef(null);
+  const LINK_EXPIRE_TIME = `${process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME}mins`;
   const ALBUM_PICS_SIZE_LIMIT = process.env.REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT * 1024 * 1024;
 
   // state
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
   const [albumName, setAlbumName] = useState('');
   const [albumFiles, setAlbumFiles] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -66,8 +77,79 @@ const UploadAlbum = () => {
     setAlbumFiles(albumFiles.filter((albumFile) => albumFile.name !== file.name));
   };
 
-  const handlePublish = () => {
-    console.log(albumFiles);
+  const handlePublish = async (e) => {
+    e.preventDefault();
+    setSnackAlertMessage('');
+    setLoading(true);
+
+    try {
+      const uploadPromises = albumFiles.map((file) => {
+        // Create a metadata object
+        const metadata = {
+          contentType: file.type,
+          customMetadata: {
+            albumID: albumID,
+            albumURI: albumURI,
+            albumAuthor: email,
+            albumName: albumName === '' ? 'Untitled Album' : albumName,
+            albumCreatedAt: Date.now(),
+            albumExpiresAt: Date.now() + process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME * 60 * 1000,
+          },
+        };
+
+        // Create a reference to the new folder 'images'
+        const storageRef = ref(storage, `${email}:${albumID}/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+        // Track progress for each file
+        const progress = {};
+
+        return new Promise((resolve, reject) => {
+          uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+              const fileProgress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+              progress[file.name] = fileProgress;
+              // setProgressPercent({ ...progress });
+            },
+            (error) => {
+              console.error(error.message);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref)
+                .then((downloadURI) => {
+                  resolve(downloadURI);
+                })
+                .catch(reject);
+            },
+          );
+        });
+      });
+
+      // Wait for all file uploads to complete
+      const albumImageURIs = await Promise.all(uploadPromises);
+
+      // Save to SupaDB via POST request
+      const payload = {
+        link_id: albumID,
+        user_id: user.uid,
+        user_email: email,
+        album_id: `${email}:${albumID}`,
+        album_name: albumName === '' ? 'Untitled Album' : albumName,
+        album_photos: albumImageURIs,
+      };
+      await axios.post('https://bubbles-api-yn2d.onrender.com/add-link', payload);
+
+      setLoading(false);
+      setSnackAlertMessage('');
+      console.log('All files uploaded successfully');
+      // openDialogURI();
+    } catch (error) {
+      setSnackAlertMessage(error.message);
+      setLoading(false);
+      handleSnackbarOpen();
+      console.error('Error uploading files:', error);
+    }
   };
 
   // side-effects
@@ -135,60 +217,72 @@ const UploadAlbum = () => {
           </nav>
         </div>
 
-        <div className="mt-12 text-center">
-          <h1 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">Bubbles</h1>
-          <p className="mt-1 text-sm text-neutral-300">Share Magical Moments That Pops In 5mins</p>
-        </div>
+        <div>
+          <div className="mt-12 text-center">
+            <h1 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">Bubbles</h1>
+            <p className="mt-1 text-sm text-neutral-300">Share Magical Moments That Pops In 5mins</p>
+          </div>
 
-        <div className="max-w-4xl mx-auto px-36">
-          <div className="mt-12">
-            <div className="flex justify-between relative">
-              <Input id="albumName" placeholder="Album Name" type="text" className="dark" value={albumName} onChange={handleAlbumNameChange} maxLength="20" />
-              <div className="absolute top-0 right-0">
-                <div className="p-1 bg-zinc-800 rounded-md -m-2">
-                  <RiPencilFill className="h-4 w-4 text-white" />
+          <div className="max-w-4xl mx-auto px-36">
+            <div className="mt-12">
+              <div className="flex justify-between relative">
+                <Input id="albumName" placeholder="Album Name" type="text" className="dark" value={albumName} onChange={handleAlbumNameChange} maxLength="20" />
+                <div className="absolute top-0 right-0">
+                  <div className="p-1 bg-zinc-800 rounded-md -m-2">
+                    <RiPencilFill className="h-4 w-4 text-white" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* First File upload */}
-          {albumFiles.length === 0 && uploadBoxLarge()}
+            {/* First File upload */}
+            {albumFiles.length === 0 && uploadBoxLarge()}
 
-          {/* Multiple file upload */}
-          {albumFiles.length !== 0 && (
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              {albumFiles.map((file, index) => {
-                return (
-                  <div key={index} className="flex justify-between relative">
-                    <img src={URL.createObjectURL(file)} alt="pic" className="w-36 h-36 rounded border-2 border-zinc-800 p-4 object-fill" />
-                    <div className="absolute top-0 right-0 cursor-pointer" onClick={() => handleRemoveImage(file)}>
-                      <div className="p-1 bg-zinc-800 rounded-md -m-2">
-                        <RiDeleteBin4Fill className="h-4 w-4 text-white" />
+            {/* Multiple file upload */}
+            {albumFiles.length !== 0 && (
+              <div className="mt-8 flex flex-wrap gap-2.5">
+                {albumFiles.map((file, index) => {
+                  return (
+                    <div key={index} className="flex justify-between relative">
+                      <img src={URL.createObjectURL(file)} alt="pic" className="w-36 h-36 rounded border-2 border-zinc-800 p-4 object-fill" />
+                      <div className="absolute top-0 right-0 cursor-pointer" onClick={() => handleRemoveImage(file)}>
+                        <div className="p-1 bg-zinc-800 rounded-md -m-2">
+                          <RiDeleteBin4Fill className="h-4 w-4 text-white" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-              {albumFiles.length < 8 && uploadBoxSmall()}
-            </div>
-          )}
+                  );
+                })}
+                {albumFiles.length < 8 && uploadBoxSmall()}
+              </div>
+            )}
+          </div>
 
-          <div className="flex justify-end">
-            {albumFiles.length === 0 && (
-              <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
-                <Button className="dark" disabled onClick={handlePublish}>
-                  Publish
-                </Button>
-              </div>
-            )}
-            {albumFiles.length !== 0 && (
-              <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
-                <Button className="dark" onClick={handlePublish}>
-                  Publish
-                </Button>
-              </div>
-            )}
+          <div className="max-w-4xl mx-auto px-36">
+            <div className="flex justify-end">
+              {albumFiles.length === 0 && !loading && (
+                <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
+                  <Button type="submit" className="dark" disabled>
+                    Publish
+                  </Button>
+                </div>
+              )}
+              {albumFiles.length !== 0 && !loading && (
+                <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
+                  <Button type="submit" className="dark" onClick={handlePublish}>
+                    Publish
+                  </Button>
+                </div>
+              )}
+              {albumFiles.length !== 0 && loading && (
+                <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
+                  <Button type="submit" className="dark" disabled>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Publish
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
