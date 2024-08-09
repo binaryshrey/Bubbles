@@ -34,7 +34,7 @@ const Login = () => {
     if (user != null) {
       saveUserDataIfNewUser(user);
       localStorage.setItem('email', JSON.stringify(user.email));
-      navigate('/dashboard');
+      navigate('/upload-album');
     }
   }, [user]);
 

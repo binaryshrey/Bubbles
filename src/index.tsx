@@ -4,6 +4,7 @@ import './styles/index.css';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import App from './App';
+import '@fontsource/roboto';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

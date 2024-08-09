@@ -69,7 +69,7 @@ const Register = () => {
             <div className="m-12 flex  justify-center">
               <p className="text-white">
                 Already have an account?{' '}
-                <Link to="/login">
+                <Link to="/upload-album">
                   <span className="text-white">Login.</span>
                 </Link>
               </p>
