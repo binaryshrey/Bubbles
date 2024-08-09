@@ -8,22 +8,26 @@ import { Input } from '../../common/input';
 import { storage } from '../utils/Firebase';
 import { Loader2, Copy } from 'lucide-react';
 import { getFileType } from '../utils/utils';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo-light.svg';
 import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
 import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
+
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { RiPencilFill, RiUploadCloud2Line, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
+import ShareAlbum from './ShareAlbum';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const UploadAlbum = () => {
   // global vars
-  const { user } = UserAuth();
   const albumID = uuidv4();
-  const albumURI = `https://bubbles-inc.vercel.app/albums/${albumID}`;
+  const { user } = UserAuth();
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
+  const albumURI = `https://bubbles-inc.vercel.app/albums/${albumID}`;
   const LINK_EXPIRE_TIME = `${process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME}mins`;
   const ALBUM_PICS_SIZE_LIMIT = process.env.REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT * 1024 * 1024;
 
@@ -33,7 +37,9 @@ const UploadAlbum = () => {
   const [albumName, setAlbumName] = useState('');
   const [albumFiles, setAlbumFiles] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [showDialogURI, setShowDialogURI] = useState(false);
   const [snackAlertMessage, setSnackAlertMessage] = useState('');
+  const [copyToClipBoardConfirm, setCopyToClipBoardConfirm] = useState(false);
 
   // methods
   const handleAlbumNameChange = (event) => {
@@ -50,6 +56,31 @@ const UploadAlbum = () => {
 
   const handleInputFileRef = () => {
     fileInputRef.current.click();
+  };
+
+  const closeDialogURI = () => {
+    setShowDialogURI(false);
+    navigate('/dashboard');
+  };
+
+  const openDialogURI = () => {
+    setShowDialogURI(true);
+  };
+
+  const handleCopyToClipBoardConfirm = () => {
+    setCopyToClipBoardConfirm(true);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        handleCopyToClipBoardConfirm();
+        console.log('Text copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err);
+      });
   };
 
   const handleFileChange = (e) => {
@@ -81,6 +112,7 @@ const UploadAlbum = () => {
     e.preventDefault();
     setSnackAlertMessage('');
     setLoading(true);
+    setCopyToClipBoardConfirm(false);
 
     try {
       const uploadPromises = albumFiles.map((file) => {
@@ -143,7 +175,7 @@ const UploadAlbum = () => {
       setLoading(false);
       setSnackAlertMessage('');
       console.log('All files uploaded successfully');
-      // openDialogURI();
+      openDialogURI();
     } catch (error) {
       setSnackAlertMessage(error.message);
       setLoading(false);
@@ -244,7 +276,7 @@ const UploadAlbum = () => {
                 {albumFiles.map((file, index) => {
                   return (
                     <div key={index} className="flex justify-between relative">
-                      <img src={URL.createObjectURL(file)} alt="pic" className="w-36 h-36 rounded border-2 border-zinc-800 p-4 object-fill" />
+                      <img src={URL.createObjectURL(file)} alt="pic" className="w-36 h-36 rounded border-2 border-zinc-800 p-2 object-fill" />
                       <div className="absolute top-0 right-0 cursor-pointer" onClick={() => handleRemoveImage(file)}>
                         <div className="p-1 bg-zinc-800 rounded-md -m-2">
                           <RiDeleteBin4Fill className="h-4 w-4 text-white" />
@@ -267,19 +299,20 @@ const UploadAlbum = () => {
                   </Button>
                 </div>
               )}
-              {albumFiles.length !== 0 && !loading && (
-                <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
-                  <Button type="submit" className="dark" onClick={handlePublish}>
-                    Publish
-                  </Button>
-                </div>
-              )}
               {albumFiles.length !== 0 && loading && (
                 <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
                   <Button type="submit" className="dark" disabled>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Publish
                   </Button>
+                </div>
+              )}
+              {albumFiles.length !== 0 && !loading && (
+                <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
+                  <Button type="submit" className="dark" onClick={handlePublish}>
+                    Publish
+                  </Button>
+                  <ShareAlbum showDialogURI={showDialogURI} setShowDialogURI={setShowDialogURI} LINK_EXPIRE_TIME={process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME} albumURI={albumURI} copyToClipBoardConfirm={copyToClipBoardConfirm} closeDialogURI={closeDialogURI} copyToClipboard={copyToClipboard} />
                 </div>
               )}
             </div>
