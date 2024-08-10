@@ -14,6 +14,7 @@ import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
 import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
+import upload from '../../assets/upload.svg';
 
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { RiPencilFill, RiUploadCloud2Line, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
@@ -192,7 +193,7 @@ const UploadAlbum = () => {
 
   const uploadBoxSmall = () => {
     return (
-      <div onClick={handleInputFileRef} className="border-2 border-dashed rounded border-zinc-700 bg-neutral-900 w-36 h-36 flex justify-center items-center cursor-pointer">
+      <div onClick={handleInputFileRef} className="border-2 border-dashed rounded border-zinc-700 bg-neutral-900 w-40 h-40 md:w-36 md:h-36 flex justify-center items-center cursor-pointer">
         <div className="w-12 h-12 bg-black rounded-md flex justify-center items-center drop-shadow-md">
           <RiAddLargeFill className="h-6 w-6 text-white" />
         </div>
@@ -206,9 +207,7 @@ const UploadAlbum = () => {
       <div className="mt-8 cursor-pointer" onClick={handleInputFileRef}>
         <div className="border-2 border-dashed rounded border-zinc-700 w-full h-64 bg-neutral-900 flex justify-center text-center">
           <div className="flex flex-col justify-center items-center">
-            <div className="w-16 h-16 bg-black rounded-md flex justify-center items-center drop-shadow-md">
-              <RiUploadCloud2Line className="h-6 w-6 text-white" />
-            </div>
+            <img src={upload} alt="upload" />
             <p className="text-neutral-300 text-md mt-4">Tap to upload your Image</p>
             <p className="text-neutral-600 text-xs">Supports: PNG, JPEG, JPG, WEBP (5 mb max)</p>
             <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
@@ -221,7 +220,7 @@ const UploadAlbum = () => {
   return (
     <div className="bg-black h-screen relative">
       {/* bubbles animaation */}
-      <div className="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden">
         <div className="bubble bubble--1"></div>
         <div className="bubble bubble--2"></div>
         <div className="bubble bubble--3"></div>
@@ -252,10 +251,10 @@ const UploadAlbum = () => {
         <div>
           <div className="mt-12 text-center">
             <h1 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">Bubbles</h1>
-            <p className="mt-1 text-sm text-neutral-300">Share Magical Moments That Pops In 5mins</p>
+            <p className="mt-1 text-xs md:text-sm text-neutral-300">Share Magical Moments That Pops In 5mins</p>
           </div>
 
-          <div className="max-w-4xl mx-auto px-36">
+          <div className="max-w-4xl mx-auto md:px-36 px-8">
             <div className="mt-12">
               <div className="flex justify-between relative">
                 <Input id="albumName" placeholder="Album Name" type="text" className="dark" value={albumName} onChange={handleAlbumNameChange} maxLength="20" />
@@ -272,11 +271,11 @@ const UploadAlbum = () => {
 
             {/* Multiple file upload */}
             {albumFiles.length !== 0 && (
-              <div className="mt-8 flex flex-wrap gap-2.5">
+              <div className="mt-8 flex flex-wrap gap-6 md:gap-2.5">
                 {albumFiles.map((file, index) => {
                   return (
                     <div key={index} className="flex justify-between relative">
-                      <img src={URL.createObjectURL(file)} alt="pic" className="w-36 h-36 rounded border-2 border-zinc-800 p-2 object-fill" />
+                      <img src={URL.createObjectURL(file)} alt="pic" className="w-40 h-40 md:w-36 md:h-36 rounded border-2 border-zinc-800 p-2 object-fill" />
                       <div className="absolute top-0 right-0 cursor-pointer" onClick={() => handleRemoveImage(file)}>
                         <div className="p-1 bg-zinc-800 rounded-md -m-2">
                           <RiDeleteBin4Fill className="h-4 w-4 text-white" />
@@ -290,7 +289,7 @@ const UploadAlbum = () => {
             )}
           </div>
 
-          <div className="max-w-4xl mx-auto px-36">
+          <div className="max-w-4xl mx-auto md:px-36 px-8 pb-4">
             <div className="flex justify-end">
               {albumFiles.length === 0 && !loading && (
                 <div className={albumFiles.length === 0 ? `mt-36` : `mt-24`}>
