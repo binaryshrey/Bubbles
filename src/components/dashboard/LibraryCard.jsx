@@ -3,10 +3,13 @@ import loginBG from '../../assets/loginBG.webp';
 import { Badge } from '@radix-ui/themes';
 import { formatDate } from '../utils/utils';
 import { Link } from 'react-router-dom';
+import Timer from '../utils/Timer';
+import { getSecondsRemaining } from '../utils/utils';
 
 const LibraryCard = ({ album }) => {
   const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;
-  const albumDisplayLink = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 4)}...`;
+  const albumDisplayLink = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 8)}...`;
+  const albumDisplayLinkExpired = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 14)}...`;
 
   const openAlbum = (albumLink) => {
     window.open(albumLink, '_blank', 'noopener,noreferrer');
@@ -20,14 +23,14 @@ const LibraryCard = ({ album }) => {
             <div className="flex justify-between">
               <div className="flex gap-4">
                 <img src={loginBG} alt="lib" className="w-10 h-10 object-cover rounded-full" />
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center ">
                   <p className="text-sm text-white font-semibold">{album.album_name}</p>
                   <div href={albumLink} className="hover:underline text-zinc-500" onClick={openAlbum}>
-                    <p className="text-xs">{albumDisplayLink}</p>
+                    <p className="text-xs">{album.is_active ? albumDisplayLink : albumDisplayLinkExpired}</p>
                   </div>
                 </div>
               </div>
-              <img src={loginBG} alt="lib" className="w-10 h-10 object-cover rounded-full" />
+              {album.is_active && <Timer timeRemaining={getSecondsRemaining(album?.created_at, 5)} albumName={album?.album_name} />}
             </div>
             <div className="flex gap-2">
               <Badge color="orange" className="mt-5 mb-5">

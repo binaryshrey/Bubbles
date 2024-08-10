@@ -150,9 +150,7 @@ export const formatDate = (inputDate)  => {
 
 export const getAlbumPublishDate = () => {
   const localeDateStr = new Date().toLocaleString("en-US");
-  console.log(localeDateStr);
   const date = new Date(localeDateStr);
-  console.log(date);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -161,4 +159,19 @@ export const getAlbumPublishDate = () => {
   const seconds = String(date.getSeconds()).padStart(2, '0');
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+
+export const getSecondsRemaining = (originalDateTimeStr, minutesToAdd) => {
+  const originalDate = new Date(originalDateTimeStr);
+  const newDate = new Date(originalDate.getTime() + minutesToAdd * 60 * 1000);
+
+  const currentDateLocale = new Date().toLocaleString("en-US");
+  const currentDate = new Date(currentDateLocale);
+
+  // Calculate the difference in milliseconds
+  const timeDifferenceMs = newDate - currentDate;
+  const timeDifferenceSeconds = Math.max(0, Math.floor(timeDifferenceMs / 1000)); 
+
+  return timeDifferenceSeconds;
 }
