@@ -21,18 +21,11 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
   const navigation = [
     { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: home },
     { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
-    { name: 'Shared Contacts', href: '/contacts', icon: RiGroupLine, current: contacts },
   ];
 
   const navigationBottom = [
     { name: 'Support', href: '/support', icon: RiQuestionLine, current: support },
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
-  ];
-
-  const library = [
-    { name: 'View All', count: viewAllCount },
-    { name: 'Favorites', count: favoritesCount },
-    { name: 'Archived', count: archivedCount },
   ];
 
   return (
@@ -68,21 +61,7 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
                         </a>
                       ))}
                       <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
-                      <p className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-neutral-300">
-                        <RiFolderLine className="mr-3 flex-shrink-0 h-4 w-4" aria-hidden="true" />
-                        Library
-                      </p>
-                      {library.map((item) => (
-                        <div key={item.name} className="flex justify-between items-center rounded-md">
-                          <p key={item.name} className="text-neutral-300 group flex items-center px-10 py-2 text-sm font-medium">
-                            {item.name}
-                          </p>
-                          <Badge color="orange" className="mr-2 p-2">
-                            {item.count}
-                          </Badge>
-                        </div>
-                      ))}
-                      <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
+
                       {navigationBottom.map((item) => (
                         <a key={item.name} href={item.href} className={classNames(item.current ? 'bg-zinc-700 text-white' : 'text-neutral-300 hover:bg-zinc-800 hover:text-neutral-300', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md')}>
                           <item.icon className={classNames(item.current ? 'text-white' : 'text-neutral-300 group-hover:text-neutral-300', 'mr-3 flex-shrink-0 h-4 w-4')} aria-hidden="true" />
@@ -128,21 +107,7 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
                   </a>
                 ))}
                 <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
-                <p className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-neutral-300">
-                  <RiFolderLine className="mr-3 flex-shrink-0 h-4 w-4" aria-hidden="true" />
-                  Library
-                </p>
-                {library.map((item) => (
-                  <div key={item.name} className="flex justify-between items-center rounded-md ">
-                    <p key={item.name} className="text-neutral-300  group flex items-center px-10 py-2 text-sm font-medium">
-                      {item.name}
-                    </p>
-                    <Badge color="orange" className="mr-2">
-                      {item.count}
-                    </Badge>
-                  </div>
-                ))}
-                <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
+
                 {navigationBottom.map((item) => (
                   <a key={item.name} href={item.href} className={classNames(item.current ? 'bg-zinc-700 text-white' : 'text-neutral-300 hover:bg-zinc-800 hover:text-neutral-300', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md')}>
                     <item.icon className={classNames(item.current ? 'text-white' : 'text-neutral-300 group-hover:text-neutral-300', 'mr-3 flex-shrink-0 h-4 w-4')} aria-hidden="true" />
@@ -152,11 +117,11 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
               </nav>
             </div>
 
-            <div className="flex flex-shrink-0 border-t border-zinc-800 p-4">
+            <div className="flex flex-shrink-0 border-t border-zinc-800 p-3">
               <Link to="/profile" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
                   <div>
-                    <img className="inline-block h-9 w-9 rounded-full" src={user.photoURL} alt="" />
+                    <img className="inline-block h-8 w-8 rounded-full" src={user.photoURL} alt="" />
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">{user.displayName}</p>
