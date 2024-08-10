@@ -13,7 +13,7 @@ import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remix
 const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
   // global vars
   const navigation = [
-    { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: home },
+    { name: 'Dashboard', href: '/dashboard', icon: RiHome6Line, current: home },
     { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
   ];
 

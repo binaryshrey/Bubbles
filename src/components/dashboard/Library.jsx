@@ -1,7 +1,7 @@
-import AlbumLibraryCard from './AlbumLibraryCard';
 import React from 'react';
+import AlbumLibraryCard from './library/AlbumLibraryCard';
 
-const ViewAll = () => {
+const Library = () => {
   return (
     <div className="flex gap-8 flex-wrap">
       <AlbumLibraryCard />
@@ -13,4 +13,4 @@ const ViewAll = () => {
   );
 };
 
-export default ViewAll;
+export default Library;

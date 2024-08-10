@@ -3,8 +3,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import ShareAlbum from './ShareAlbum';
 import '../../styles/uploadAlbum.css';
 import { Input } from '../../common/input';
+import upload from '../../assets/upload.svg';
 import { storage } from '../utils/Firebase';
 import { Loader2, Copy } from 'lucide-react';
 import { getFileType } from '../utils/utils';
@@ -14,11 +16,8 @@ import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
 import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
-import upload from '../../assets/upload.svg';
-
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import { RiPencilFill, RiUploadCloud2Line, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
-import ShareAlbum from './ShareAlbum';
+import { RiPencilFill, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
 
