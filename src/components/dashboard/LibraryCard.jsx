@@ -17,9 +17,9 @@ const LibraryCard = ({ album }) => {
 
   return (
     <>
-      <div className="w-2/5 cursor-pointer">
+      <div className="w-2/5 cursor-pointer ">
         <Link to="/shared-albums">
-          <div className="bg-black border border-zinc-700 rounded-md p-5">
+          <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
             <div className="flex justify-between">
               <div className="flex gap-4">
                 <img src={loginBG} alt="lib" className="w-10 h-10 object-cover rounded-full" />
@@ -37,7 +37,7 @@ const LibraryCard = ({ album }) => {
                 Bubbles Album
               </Badge>
               {album.is_active ? (
-                <Badge color="lime" className="mt-5 mb-5">
+                <Badge color="green" className="mt-5 mb-5">
                   • Live
                 </Badge>
               ) : (

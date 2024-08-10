@@ -24,7 +24,7 @@ const Dashboard = () => {
 
       <Link to="/upload-album">
         <div className="mt-8 cursor-pointer">
-          <div className="border-2 border-dashed rounded border-zinc-700 w-full h-64 bg-neutral-900 flex justify-center text-center">
+          <div className="border-2 border-dashed rounded border-zinc-600 w-full h-64 bg-zinc-900 flex justify-center text-center">
             <div className="flex flex-col justify-center items-center">
               <img src={upload} alt="upload" className="w-20 h-20" />
               <p className="text-neutral-300 text-md mt-4">Tap to upload your Image</p>
