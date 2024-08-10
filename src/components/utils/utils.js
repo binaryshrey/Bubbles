@@ -69,7 +69,6 @@ export const fetchSavedAlbumFolders = async (emailID) => {
     const baseDirRef = ref(storage, '/')
     // List all items in the base directory
     const allFolders = await listAll(baseDirRef);
-    console.log('allFolders',allFolders)
         
     // Create a set to store unique folder names
     const folderSet = new Set();
@@ -77,7 +76,6 @@ export const fetchSavedAlbumFolders = async (emailID) => {
     // Iterate over the items to extract folder names
     allFolders.prefixes.forEach((itemRef) => {
       const fullPath = itemRef._location.path_;
-      console.log('fullPath',fullPath)
       const parts = fullPath.split(':');
 
       // If the path has multiple parts, we can infer folder names
@@ -86,7 +84,6 @@ export const fetchSavedAlbumFolders = async (emailID) => {
         }
     });
 
-    console.log('folderSet',folderSet)
 
     // Convert the set to an array and update state
     return(Array.from(folderSet));
@@ -130,3 +127,22 @@ export const saveUserDataIfNewUser = async (user) => {
       console.error('Error saving user data:', error);
     }
   };
+
+
+
+export const formatDate = (inputDate)  => {
+  const date = new Date(inputDate);
+
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
+  ];
+
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${day}-${month} ${hours}:${minutes}`;
+}
