@@ -9,7 +9,6 @@ const Register = React.lazy(() => import('./components/register/Register'));
 const Navbar = React.lazy(() => import('./components/dashboard/Navbar'));
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
 const PublishedAlbum = React.lazy(() => import('./components/album/PublishedAlbum'));
-const NewAlbum = React.lazy(() => import('./components/album/NewAlbum'));
 const UploadAlbum = React.lazy(() => import('./components/album/UploadAlbum'));
 
 const App = () => {
@@ -41,16 +40,6 @@ const App = () => {
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Navbar Component={Dashboard} home={true} albums={false} contacts={false} support={false} settings={false} />
-                  </ProtectedRoute>
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/new-album"
-              element={
-                <React.Suspense fallback={<></>}>
-                  <ProtectedRoute>
-                    <Navbar Component={NewAlbum} home={true} albums={false} contacts={false} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }

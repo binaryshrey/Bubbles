@@ -4,6 +4,7 @@ import LibraryCard from './LibraryCard';
 import Lottie from 'react-lottie';
 import empty from '../../assets/empty.json';
 import SnackAlert from '../../common/SnackAlert';
+import LibrarySkeleton from './LibrarySkeleton';
 
 const Library = () => {
   const lottieConfig = {
@@ -53,7 +54,14 @@ const Library = () => {
 
   return (
     <>
-      {loading && <p className="text-white">Loading...</p>}
+      {loading && (
+        <p className="text-white">
+          <div className="flex gap-4 flex-wrap">
+            <LibrarySkeleton />
+            <LibrarySkeleton />
+          </div>
+        </p>
+      )}
       {!loading && albums.length === 0 && (
         <div className="mt-20 flex flex-col justify-center items-center text-center">
           <Lottie options={lottieConfig} height={140} width={140} />
