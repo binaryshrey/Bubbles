@@ -2,6 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -37,22 +41,22 @@
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 255 100% 0%;
+    --foreground: 0 0% 100%;
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
+    --muted: 255 0% 15%;
+    --muted-foreground: 0 0% 100%;
 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 255 0% 15%;
+    --accent-foreground: 0 0% 100%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
+    --popover: 255 100% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    --border: 216 34% 17%;
+    --border: 255 0% 15%;
     --input: 216 34% 17%;
 
-    --card: 224 71% 4%;
+    --card: 255 100% 0%;
     --card-foreground: 213 31% 91%;
 
     --primary: 210 40% 98%;
@@ -64,7 +68,7 @@
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --ring: 216 34% 17%;
+    --ring: 0 0% 50%;
 
     --radius: 0.5rem;
   }

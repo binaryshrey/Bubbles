@@ -10,6 +10,7 @@ const Navbar = React.lazy(() => import('./components/dashboard/Navbar'));
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
 const PublishedAlbum = React.lazy(() => import('./components/album/PublishedAlbum'));
 const NewAlbum = React.lazy(() => import('./components/album/NewAlbum'));
+const UploadAlbum = React.lazy(() => import('./components/album/UploadAlbum'));
 
 const App = () => {
   return (
@@ -50,6 +51,16 @@ const App = () => {
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Navbar Component={NewAlbum} home={true} albums={false} contacts={false} support={false} settings={false} />
+                  </ProtectedRoute>
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/upload-album"
+              element={
+                <React.Suspense fallback={<></>}>
+                  <ProtectedRoute>
+                    <UploadAlbum />
                   </ProtectedRoute>
                 </React.Suspense>
               }

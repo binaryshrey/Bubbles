@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from "tailwindcss/defaultTheme";
-import colors from "tailwindcss/colors";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 module.exports = {
@@ -19,7 +18,7 @@ module.exports = {
       },
       extend: {
         fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Roboto', 'sans-serif'],
         },
         darkMode: ["class"],
         animation: {
