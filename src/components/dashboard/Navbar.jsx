@@ -1,23 +1,17 @@
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import logo from '../../assets/logo-light.svg';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { UserAuth } from '../hooks/AuthContext';
-import { Link } from 'react-router-dom';
-import { RiHome6Line, RiGroupLine, RiFolderLine, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
-import { Badge } from '@radix-ui/themes';
+/************************************************************ IMPORTS ************************************************************/
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo-light.svg';
+import { UserAuth } from '../hooks/AuthContext';
+import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
-  const { user } = UserAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [viewAllCount, setViewAllCount] = useState(0);
-  const [favoritesCount, setFavoritesCount] = useState(0);
-  const [archivedCount, setArchivedCount] = useState(0);
-
+  // global vars
   const navigation = [
     { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: home },
     { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
@@ -27,6 +21,15 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
     { name: 'Support', href: '/support', icon: RiQuestionLine, current: support },
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
   ];
+
+  // state
+  const { user } = UserAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // methods
+  const classNames = (...classes) => {
+    return classes.filter(Boolean).join(' ');
+  };
 
   return (
     <>
@@ -85,14 +88,13 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
-              <div className="w-14 flex-shrink-0">{/* Force sidebar to shrink to fit close icon */}</div>
+              <div className="w-14 flex-shrink-0"></div>
             </div>
           </Dialog>
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
         <div className=" h-screen hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-zinc-900 rounded-lg">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
               <div className="flex flex-shrink-0 items-center px-4">
