@@ -8,6 +8,10 @@ const LibraryCard = ({ album }) => {
   const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;
   const albumDisplayLink = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 4)}...`;
 
+  const openAlbum = (albumLink) => {
+    window.open(albumLink, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <>
       <div className="w-2/5 cursor-pointer">
@@ -18,9 +22,9 @@ const LibraryCard = ({ album }) => {
                 <img src={loginBG} alt="lib" className="w-10 h-10 object-cover rounded-full" />
                 <div className="flex flex-col justify-center">
                   <p className="text-sm text-white font-semibold">{album.album_name}</p>
-                  <a href={albumLink} className="hover:underline text-zinc-500">
+                  <div href={albumLink} className="hover:underline text-zinc-500" onClick={openAlbum}>
                     <p className="text-xs">{albumDisplayLink}</p>
-                  </a>
+                  </div>
                 </div>
               </div>
               <img src={loginBG} alt="lib" className="w-10 h-10 object-cover rounded-full" />
@@ -30,7 +34,7 @@ const LibraryCard = ({ album }) => {
                 Bubbles Album
               </Badge>
               {album.is_active ? (
-                <Badge color="green" className="mt-5 mb-5">
+                <Badge color="lime" className="mt-5 mb-5">
                   • Live
                 </Badge>
               ) : (
@@ -40,7 +44,7 @@ const LibraryCard = ({ album }) => {
               )}
             </div>
             <p className="text-white text-xs text-zinc-500 mb-1">
-              {album.album_photos.length} Images | {formatDate(album.created_at)}
+              {album.album_photos?.length} Image(s) | {formatDate(album.created_at)}
             </p>
             <p className="text-white text-xs">Powered by Bubbles Inc.</p>
           </div>

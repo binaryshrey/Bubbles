@@ -17,6 +17,7 @@ const Library = () => {
   };
 
   const [albums, setAlbums] = useState([]);
+  const [albumsExpiring, setAlbumsExpiring] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -40,8 +41,9 @@ const Library = () => {
             user_email: emailID,
           },
         });
-
-        setAlbums(response.data.albums);
+        console.log(response.data);
+        setAlbums(response.data?.albums?.reverse());
+        setAlbumsExpiring(response.data?.albums_expiring);
       } catch (err) {
         setError(err.message);
         handleSnackbarOpen();
@@ -50,30 +52,39 @@ const Library = () => {
       }
     };
     fetchAlbums();
+
+    // poll every 3mins
+    const intervalId = setInterval(fetchAlbums, 180000);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
     <>
       {loading && (
-        <p className="text-white">
-          <div className="flex gap-4 flex-wrap">
-            <LibrarySkeleton />
-            <LibrarySkeleton />
-          </div>
-        </p>
+        <div className="flex gap-4 flex-wrap">
+          <LibrarySkeleton />
+          <LibrarySkeleton />
+        </div>
       )}
-      {!loading && albums.length === 0 && (
+      {!loading && albums?.length === 0 && (
         <div className="mt-20 flex flex-col justify-center items-center text-center">
           <Lottie options={lottieConfig} height={140} width={140} />
           <p className="text-white text-xs -mt-4">You don't have any albums yet!</p>
         </div>
       )}
-      {!loading && albums.length > 0 && (
+      {!loading && albums?.length > 0 && (
         <div className="flex gap-4 flex-wrap">
           {albums.map((album) => (
             <LibraryCard key={album.album_id} album={album} />
           ))}
         </div>
+      )}
+      {!loading && albumsExpiring?.length > 0 && (
+        <>
+          {albumsExpiring.map((album, index) => (
+            <SnackAlert key={index} open={true} message={`${album.album_name} album link is about to expire!`} severity="warning" onClose={handleSnackbarClose} />
+          ))}
+        </>
       )}
       <SnackAlert open={snackbarOpen} message={error} severity="error" onClose={handleSnackbarClose} />
     </>

@@ -146,3 +146,19 @@ export const formatDate = (inputDate)  => {
 
   return `${day}-${month} ${hours}:${minutes}`;
 }
+
+
+export const getAlbumPublishDate = () => {
+  const localeDateStr = new Date().toLocaleString("en-US");
+  console.log(localeDateStr);
+  const date = new Date(localeDateStr);
+  console.log(date);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}

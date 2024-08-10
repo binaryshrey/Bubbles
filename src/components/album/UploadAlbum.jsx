@@ -16,6 +16,7 @@ import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
 import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
+import { getAlbumPublishDate } from '../utils/utils';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { RiPencilFill, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
 
@@ -124,8 +125,7 @@ const UploadAlbum = () => {
             albumURI: albumURI,
             albumAuthor: email,
             albumName: albumName === '' ? 'Untitled Album' : albumName,
-            albumCreatedAt: Date.now(),
-            albumExpiresAt: Date.now() + process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME * 60 * 1000,
+            albumCreatedAt: getAlbumPublishDate(),
           },
         };
 
@@ -169,7 +169,9 @@ const UploadAlbum = () => {
         album_id: `${email}:${albumID}`,
         album_name: albumName === '' ? 'Untitled Album' : albumName,
         album_photos: albumImageURIs,
+        created_at: getAlbumPublishDate(),
       };
+      console.log('Payload:', payload);
       await axios.post('https://bubbles-api-yn2d.onrender.com/add-link', payload);
 
       setLoading(false);
