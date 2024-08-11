@@ -32,9 +32,11 @@ const Login = () => {
 
   React.useEffect(() => {
     if (user != null) {
-      saveUserDataIfNewUser(user);
-      localStorage.setItem('email', JSON.stringify(user.email));
-      navigate('/upload-album');
+      if (Object.keys(user).length !== 0) {
+        saveUserDataIfNewUser(user);
+        localStorage.setItem('email', JSON.stringify(user.email));
+        navigate('/upload-album');
+      }
     }
   }, [user]);
 

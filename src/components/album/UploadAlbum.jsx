@@ -3,8 +3,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import ShareAlbum from './ShareAlbum';
 import '../../styles/uploadAlbum.css';
 import { Input } from '../../common/input';
+import upload from '../../assets/upload.svg';
 import { storage } from '../utils/Firebase';
 import { Loader2, Copy } from 'lucide-react';
 import { getFileType } from '../utils/utils';
@@ -14,26 +16,24 @@ import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
 import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
-import upload from '../../assets/upload.svg';
-
+import { getAlbumPublishDate } from '../utils/utils';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import { RiPencilFill, RiUploadCloud2Line, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
-import ShareAlbum from './ShareAlbum';
+import { RiPencilFill, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const UploadAlbum = () => {
   // global vars
-  const albumID = uuidv4();
   const { user } = UserAuth();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
-  const albumURI = `https://bubbles-inc.vercel.app/albums/${albumID}`;
   const LINK_EXPIRE_TIME = `${process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME}mins`;
   const ALBUM_PICS_SIZE_LIMIT = process.env.REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT * 1024 * 1024;
 
   // state
   const [email, setEmail] = useState('');
+  const [albumID, setAlbumID] = useState('');
+  const [albumURI, setAlbumURI] = useState('');
   const [loading, setLoading] = useState(false);
   const [albumName, setAlbumName] = useState('');
   const [albumFiles, setAlbumFiles] = useState([]);
@@ -115,23 +115,26 @@ const UploadAlbum = () => {
     setLoading(true);
     setCopyToClipBoardConfirm(false);
 
+    const publishAlbumID = uuidv4();
+    setAlbumID(publishAlbumID);
+    setAlbumURI(`https://bubbles-inc.vercel.app/albums/${publishAlbumID}`);
+
     try {
       const uploadPromises = albumFiles.map((file) => {
         // Create a metadata object
         const metadata = {
           contentType: file.type,
           customMetadata: {
-            albumID: albumID,
-            albumURI: albumURI,
+            albumID: publishAlbumID,
+            albumURI: `https://bubbles-inc.vercel.app/albums/${publishAlbumID}`,
             albumAuthor: email,
             albumName: albumName === '' ? 'Untitled Album' : albumName,
-            albumCreatedAt: Date.now(),
-            albumExpiresAt: Date.now() + process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME * 60 * 1000,
+            albumCreatedAt: getAlbumPublishDate(),
           },
         };
 
         // Create a reference to the new folder 'images'
-        const storageRef = ref(storage, `${email}:${albumID}/${file.name}`);
+        const storageRef = ref(storage, `${email}:${publishAlbumID}/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
         // Track progress for each file
@@ -164,13 +167,15 @@ const UploadAlbum = () => {
 
       // Save to SupaDB via POST request
       const payload = {
-        link_id: albumID,
+        link_id: publishAlbumID,
         user_id: user.uid,
         user_email: email,
-        album_id: `${email}:${albumID}`,
+        album_id: `${email}:${publishAlbumID}`,
         album_name: albumName === '' ? 'Untitled Album' : albumName,
         album_photos: albumImageURIs,
+        created_at: getAlbumPublishDate(),
       };
+      console.log('Payload:', payload);
       await axios.post('https://bubbles-api-yn2d.onrender.com/add-link', payload);
 
       setLoading(false);
@@ -311,7 +316,7 @@ const UploadAlbum = () => {
                   <Button type="submit" className="dark" onClick={handlePublish}>
                     Publish
                   </Button>
-                  <ShareAlbum showDialogURI={showDialogURI} setShowDialogURI={setShowDialogURI} LINK_EXPIRE_TIME={process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME} albumURI={albumURI} copyToClipBoardConfirm={copyToClipBoardConfirm} closeDialogURI={closeDialogURI} copyToClipboard={copyToClipboard} />
+                  {showDialogURI && <ShareAlbum showDialogURI={showDialogURI} setShowDialogURI={setShowDialogURI} LINK_EXPIRE_TIME={process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME} albumURI={albumURI} copyToClipBoardConfirm={copyToClipBoardConfirm} closeDialogURI={closeDialogURI} copyToClipboard={copyToClipboard} />}
                 </div>
               )}
             </div>

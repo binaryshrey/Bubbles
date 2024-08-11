@@ -1,27 +1,20 @@
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import logo from '../../assets/logo-light.svg';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { UserAuth } from '../hooks/AuthContext';
-import { Link } from 'react-router-dom';
-import { RiHome6Line, RiGroupLine, RiFolderLine, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
-import { Badge } from '@radix-ui/themes';
+/************************************************************ IMPORTS ************************************************************/
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo-light.svg';
+import { UserAuth } from '../hooks/AuthContext';
+import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
-  const { user } = UserAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [viewAllCount, setViewAllCount] = useState(0);
-  const [favoritesCount, setFavoritesCount] = useState(0);
-  const [archivedCount, setArchivedCount] = useState(0);
-
+  // global vars
   const navigation = [
-    { name: 'Home', href: '/dashboard', icon: RiHome6Line, current: home },
+    { name: 'Dashboard', href: '/dashboard', icon: RiHome6Line, current: home },
     { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
-    { name: 'Shared Contacts', href: '/contacts', icon: RiGroupLine, current: contacts },
   ];
 
   const navigationBottom = [
@@ -29,11 +22,14 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
   ];
 
-  const library = [
-    { name: 'View All', count: viewAllCount },
-    { name: 'Favorites', count: favoritesCount },
-    { name: 'Archived', count: archivedCount },
-  ];
+  // state
+  const { user } = UserAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // methods
+  const classNames = (...classes) => {
+    return classes.filter(Boolean).join(' ');
+  };
 
   return (
     <>
@@ -68,21 +64,7 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
                         </a>
                       ))}
                       <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
-                      <p className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-neutral-300">
-                        <RiFolderLine className="mr-3 flex-shrink-0 h-4 w-4" aria-hidden="true" />
-                        Library
-                      </p>
-                      {library.map((item) => (
-                        <div key={item.name} className="flex justify-between items-center rounded-md">
-                          <p key={item.name} className="text-neutral-300 group flex items-center px-10 py-2 text-sm font-medium">
-                            {item.name}
-                          </p>
-                          <Badge color="orange" className="mr-2 p-2">
-                            {item.count}
-                          </Badge>
-                        </div>
-                      ))}
-                      <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
+
                       {navigationBottom.map((item) => (
                         <a key={item.name} href={item.href} className={classNames(item.current ? 'bg-zinc-700 text-white' : 'text-neutral-300 hover:bg-zinc-800 hover:text-neutral-300', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md')}>
                           <item.icon className={classNames(item.current ? 'text-white' : 'text-neutral-300 group-hover:text-neutral-300', 'mr-3 flex-shrink-0 h-4 w-4')} aria-hidden="true" />
@@ -106,14 +88,13 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
-              <div className="w-14 flex-shrink-0">{/* Force sidebar to shrink to fit close icon */}</div>
+              <div className="w-14 flex-shrink-0"></div>
             </div>
           </Dialog>
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
         <div className=" h-screen hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col p-1 bg-black">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-zinc-900 rounded-lg">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
               <div className="flex flex-shrink-0 items-center px-4">
@@ -128,21 +109,7 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
                   </a>
                 ))}
                 <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
-                <p className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-neutral-300">
-                  <RiFolderLine className="mr-3 flex-shrink-0 h-4 w-4" aria-hidden="true" />
-                  Library
-                </p>
-                {library.map((item) => (
-                  <div key={item.name} className="flex justify-between items-center rounded-md ">
-                    <p key={item.name} className="text-neutral-300  group flex items-center px-10 py-2 text-sm font-medium">
-                      {item.name}
-                    </p>
-                    <Badge color="orange" className="mr-2">
-                      {item.count}
-                    </Badge>
-                  </div>
-                ))}
-                <div className="flex flex-shrink-0 border-t border-zinc-800"></div>
+
                 {navigationBottom.map((item) => (
                   <a key={item.name} href={item.href} className={classNames(item.current ? 'bg-zinc-700 text-white' : 'text-neutral-300 hover:bg-zinc-800 hover:text-neutral-300', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md')}>
                     <item.icon className={classNames(item.current ? 'text-white' : 'text-neutral-300 group-hover:text-neutral-300', 'mr-3 flex-shrink-0 h-4 w-4')} aria-hidden="true" />
@@ -152,11 +119,11 @@ const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
               </nav>
             </div>
 
-            <div className="flex flex-shrink-0 border-t border-zinc-800 p-4">
+            <div className="flex flex-shrink-0 border-t border-zinc-800 p-3">
               <Link to="/profile" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
                   <div>
-                    <img className="inline-block h-9 w-9 rounded-full" src={user.photoURL} alt="" />
+                    <img className="inline-block h-8 w-8 rounded-full" src={user.photoURL} alt="" />
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">{user.displayName}</p>

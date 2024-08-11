@@ -1,6 +1,6 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Copy } from 'lucide-react';
 import { Input } from '../../common/input';
 import { Label } from '../../common/label';
@@ -20,6 +20,8 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
   // state
   const [timeLeft, setTimeLeft] = useState(LINK_EXPIRE_TIME * 60);
   const shareContent = `Hey! Check out my new Bubbles album :\n${albumURI}`;
+
+  console.log('albumURI:', albumURI);
 
   // side-effects
   useEffect(() => {
@@ -59,22 +61,22 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
           </Button>
         </div>
         <div className="flex justify-between">
-          <TelegramShareButton url={shareContent}>
+          <TelegramShareButton url={`${shareContent}?ref=telegram`}>
             <img src={telegram} alt="telegram" className="w-12 h-12 rounded" />
           </TelegramShareButton>
-          <EmailShareButton url={shareContent}>
+          <EmailShareButton url={`${shareContent}?ref=gmail`}>
             <img src={gmail} alt="gmail" className="w-12 h-12 rounded" />
           </EmailShareButton>
-          <FacebookShareButton url={shareContent}>
+          <FacebookShareButton url={`${shareContent}?ref=fb`}>
             <img src={fb} alt="fb" className="w-12 h-12 rounded" />
           </FacebookShareButton>
-          <RedditShareButton url={shareContent}>
+          <RedditShareButton url={`${shareContent}?ref=reddit`}>
             <img src={reddit} alt="reddit" className="w-12 h-12 rounded" />
           </RedditShareButton>
-          <TwitterShareButton url={shareContent}>
+          <TwitterShareButton url={`${shareContent}?ref=twitter`}>
             <img src={twitter} alt="twitter" className="w-12 h-12 rounded" />
           </TwitterShareButton>
-          <WhatsappShareButton url={shareContent}>
+          <WhatsappShareButton url={`${shareContent}?ref=whatsapp`}>
             <img src={whatsapp} alt="whatsapp" className="w-12 h-12 rounded" />
           </WhatsappShareButton>
         </div>
@@ -89,4 +91,4 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
   );
 };
 
-export default ShareAlbum;
+export default memo(ShareAlbum);
