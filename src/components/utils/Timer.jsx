@@ -81,14 +81,14 @@ const Timer = ({ timeRemaining, albumName }) => {
 
   return (
     <>
-      <div className="relative w-12 h-12">
+      <div className="relative w-10 h-10">
         <svg className="transform -scale-x-100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <g style={{ fill: 'none', stroke: 'none' }}>
             <circle className="stroke-2 stroke-zinc-600" cx="50" cy="50" r="45" />
             <path id="base-timer-path-remaining" strokeDasharray={setCircleDasharray()} className={`stroke-current stroke-[4px] stroke-round rotate-90 origin-center duration-1000 ease-linear text-${remainingPathColor}`} d="M 50, 50 m -45, 0 a 45,45 0 1,0 90,0 a 45,45 0 1,0 -90,0" />
           </g>
         </svg>
-        <p className="absolute w-12 h-12 top-0 flex items-center justify-center text-xs text-white">{formatTime(timeLeft)}</p>
+        <p className="absolute w-10 h-10 top-0 flex items-center justify-center text-xs text-white">{formatTime(timeLeft)}</p>
       </div>
       <SnackAlert open={snackbarOpen} message={`${albumName} album link will now expire!`} severity="warning" onClose={handleSnackbarClose} />
     </>

@@ -73,7 +73,7 @@ const Library = () => {
         </div>
       )}
       {!loading && albums?.length > 0 && (
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex justify-between gap-4 xl:gap-10 flex-wrap">
           {albums.map((album) => (
             <LibraryCard key={album.album_id} album={album} />
           ))}

@@ -9,7 +9,9 @@ import { getSecondsRemaining } from '../utils/utils';
 const LibraryCard = ({ album }) => {
   const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;
   const albumDisplayLink = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 8)}...`;
-  const albumDisplayLinkExpired = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 14)}...`;
+  const albumDisplayLinkExpired = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 18)}...`;
+  const albumDisplayLinkMobile = `https://bubbles-inc.vercel.app/alb...`;
+  const albumDisplayLinkExpiredMobile = `https://bubbles-inc.vercel.app/albums/...`;
 
   const openAlbum = (albumLink) => {
     window.open(albumLink, '_blank', 'noopener,noreferrer');
@@ -17,7 +19,7 @@ const LibraryCard = ({ album }) => {
 
   return (
     <>
-      <div className="w-2/5 cursor-pointer ">
+      <div className="w-full xl:w-48/100 cursor-pointer ">
         <Link to="/shared-albums">
           <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
             <div className="flex justify-between">
@@ -26,7 +28,8 @@ const LibraryCard = ({ album }) => {
                 <div className="flex flex-col justify-center ">
                   <p className="text-sm text-white font-semibold">{album.album_name}</p>
                   <div href={albumLink} className="hover:underline text-zinc-500" onClick={openAlbum}>
-                    <p className="text-xs">{album.is_active ? albumDisplayLink : albumDisplayLinkExpired}</p>
+                    <p className="text-xs block sm:hidden">{album.is_active ? albumDisplayLinkMobile : albumDisplayLinkExpiredMobile}</p>
+                    <p className="text-xs hidden sm:block">{album.is_active ? albumDisplayLink : albumDisplayLinkExpired}</p>
                   </div>
                 </div>
               </div>
