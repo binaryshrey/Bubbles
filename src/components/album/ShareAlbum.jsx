@@ -1,6 +1,6 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Copy } from 'lucide-react';
 import { Input } from '../../common/input';
 import { Label } from '../../common/label';
@@ -20,6 +20,8 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
   // state
   const [timeLeft, setTimeLeft] = useState(LINK_EXPIRE_TIME * 60);
   const shareContent = `Hey! Check out my new Bubbles album :\n${albumURI}`;
+
+  console.log('albumURI:', albumURI);
 
   // side-effects
   useEffect(() => {
@@ -89,4 +91,4 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
   );
 };
 
-export default ShareAlbum;
+export default memo(ShareAlbum);

@@ -1,16 +1,20 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import React from 'react';
 import Home from './components/home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AuthContextProvider } from './components/hooks/AuthContext';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import PageNotFound from './components/not-found/PageNotFound';
+import { AuthContextProvider } from './components/hooks/AuthContext';
 
 const Login = React.lazy(() => import('./components/login/Login'));
-const Register = React.lazy(() => import('./components/register/Register'));
 const Navbar = React.lazy(() => import('./components/dashboard/Navbar'));
+const Register = React.lazy(() => import('./components/register/Register'));
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
-const PublishedAlbum = React.lazy(() => import('./components/album/PublishedAlbum'));
 const UploadAlbum = React.lazy(() => import('./components/album/UploadAlbum'));
+const PublishedAlbum = React.lazy(() => import('./components/album/PublishedAlbum'));
+
+/************************************************************ IMPORTS ************************************************************/
 
 const App = () => {
   return (
@@ -57,7 +61,7 @@ const App = () => {
               }
             />
             <Route
-              path="/albums/:albumID"
+              path="/albums/:linkID"
               element={
                 <React.Suspense fallback={<></>}>
                   <PublishedAlbum />

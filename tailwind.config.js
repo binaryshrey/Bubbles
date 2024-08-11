@@ -19,6 +19,7 @@ module.exports = {
       extend: {
         fontFamily: {
         sans: ['Roboto', 'sans-serif'],
+        album: ['Merriweather', 'sans-serif'],
         },
         darkMode: ["class"],
         animation: {

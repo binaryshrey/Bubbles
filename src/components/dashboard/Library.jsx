@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+/************************************************************ IMPORTS ************************************************************/
+
 import axios from 'axios';
-import LibraryCard from './LibraryCard';
 import Lottie from 'react-lottie';
+import LibraryCard from './LibraryCard';
 import empty from '../../assets/empty.json';
-import SnackAlert from '../../common/SnackAlert';
 import LibrarySkeleton from './LibrarySkeleton';
+import SnackAlert from '../../common/SnackAlert';
+import React, { useState, useEffect } from 'react';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Library = () => {
+  //global vars
   const lottieConfig = {
     loop: true,
     autoplay: true,
@@ -16,12 +21,14 @@ const Library = () => {
     },
   };
 
+  // state
   const [albums, setAlbums] = useState([]);
   const [albumsExpiring, setAlbumsExpiring] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+  // methods
   const handleSnackbarOpen = () => {
     setSnackbarOpen(true);
   };
@@ -29,12 +36,13 @@ const Library = () => {
     setSnackbarOpen(false);
   };
 
+  // side-effects
   useEffect(() => {
     const emailID = localStorage.getItem('email') ? JSON.parse(localStorage.getItem('email')) : '';
     const fetchAlbums = async () => {
       try {
         setLoading(true);
-        setError('null');
+        setError('');
 
         const response = await axios.get('https://bubbles-api-yn2d.onrender.com/get-albums/', {
           params: {

@@ -24,16 +24,16 @@ import { RiPencilFill, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react
 
 const UploadAlbum = () => {
   // global vars
-  const albumID = uuidv4();
   const { user } = UserAuth();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
-  const albumURI = `https://bubbles-inc.vercel.app/albums/${albumID}`;
   const LINK_EXPIRE_TIME = `${process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME}mins`;
   const ALBUM_PICS_SIZE_LIMIT = process.env.REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT * 1024 * 1024;
 
   // state
   const [email, setEmail] = useState('');
+  const [albumID, setAlbumID] = useState('');
+  const [albumURI, setAlbumURI] = useState('');
   const [loading, setLoading] = useState(false);
   const [albumName, setAlbumName] = useState('');
   const [albumFiles, setAlbumFiles] = useState([]);
@@ -115,14 +115,18 @@ const UploadAlbum = () => {
     setLoading(true);
     setCopyToClipBoardConfirm(false);
 
+    const publishAlbumID = uuidv4();
+    setAlbumID(publishAlbumID);
+    setAlbumURI(`https://bubbles-inc.vercel.app/albums/${publishAlbumID}`);
+
     try {
       const uploadPromises = albumFiles.map((file) => {
         // Create a metadata object
         const metadata = {
           contentType: file.type,
           customMetadata: {
-            albumID: albumID,
-            albumURI: albumURI,
+            albumID: publishAlbumID,
+            albumURI: `https://bubbles-inc.vercel.app/albums/${publishAlbumID}`,
             albumAuthor: email,
             albumName: albumName === '' ? 'Untitled Album' : albumName,
             albumCreatedAt: getAlbumPublishDate(),
@@ -130,7 +134,7 @@ const UploadAlbum = () => {
         };
 
         // Create a reference to the new folder 'images'
-        const storageRef = ref(storage, `${email}:${albumID}/${file.name}`);
+        const storageRef = ref(storage, `${email}:${publishAlbumID}/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
         // Track progress for each file
@@ -163,10 +167,10 @@ const UploadAlbum = () => {
 
       // Save to SupaDB via POST request
       const payload = {
-        link_id: albumID,
+        link_id: publishAlbumID,
         user_id: user.uid,
         user_email: email,
-        album_id: `${email}:${albumID}`,
+        album_id: `${email}:${publishAlbumID}`,
         album_name: albumName === '' ? 'Untitled Album' : albumName,
         album_photos: albumImageURIs,
         created_at: getAlbumPublishDate(),
@@ -312,7 +316,7 @@ const UploadAlbum = () => {
                   <Button type="submit" className="dark" onClick={handlePublish}>
                     Publish
                   </Button>
-                  <ShareAlbum showDialogURI={showDialogURI} setShowDialogURI={setShowDialogURI} LINK_EXPIRE_TIME={process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME} albumURI={albumURI} copyToClipBoardConfirm={copyToClipBoardConfirm} closeDialogURI={closeDialogURI} copyToClipboard={copyToClipboard} />
+                  {showDialogURI && <ShareAlbum showDialogURI={showDialogURI} setShowDialogURI={setShowDialogURI} LINK_EXPIRE_TIME={process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME} albumURI={albumURI} copyToClipBoardConfirm={copyToClipBoardConfirm} closeDialogURI={closeDialogURI} copyToClipboard={copyToClipboard} />}
                 </div>
               )}
             </div>

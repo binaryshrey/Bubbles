@@ -1,16 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './styles/index.css';
-import '@radix-ui/themes/styles.css';
-import { Theme } from '@radix-ui/themes';
+/************************************************************ IMPORTS ************************************************************/
+
 import App from './App';
+import './styles/index.css';
 import '@fontsource/roboto';
+import '@radix-ui/themes/styles.css';
+import ReactDOM from 'react-dom/client';
+import { Theme } from '@radix-ui/themes';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <Theme>
-      <App />
-    </Theme>
-  </React.StrictMode>,
+  <Theme>
+    <App />
+  </Theme>,
 );
