@@ -3,6 +3,7 @@ import Home from './components/home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './components/hooks/AuthContext';
 import ProtectedRoute from './components/utils/ProtectedRoute';
+import PageNotFound from './components/not-found/PageNotFound';
 
 const Login = React.lazy(() => import('./components/login/Login'));
 const Register = React.lazy(() => import('./components/register/Register'));
@@ -18,6 +19,7 @@ const App = () => {
         <AuthContextProvider>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<PageNotFound />} />
             <Route
               path="/login"
               element={
