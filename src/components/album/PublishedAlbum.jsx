@@ -2,7 +2,6 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import LayoutOne from './albumLayout/LayoutOne';
 import LayoutTwo from './albumLayout/LayoutTwo';
 import { Skeleton } from '../../common/skeleton';
@@ -10,12 +9,16 @@ import SnackAlert from '../../common/SnackAlert';
 import LayoutThree from './albumLayout/LayoutThree';
 import PageNotFound from '../not-found/PageNotFound';
 import MasonryLayout from './albumLayout/MasonryLayout';
+import { useParams, useLocation } from 'react-router-dom';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const PublishedAlbum = () => {
   // global vars
   const { linkID } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const ref = queryParams.get('ref');
 
   // state
   const [iP, setIP] = useState('');
@@ -48,7 +51,9 @@ const PublishedAlbum = () => {
           ip_address: ip_response.data?.ip,
         };
 
-        const album_response = await axios.put('https://bubbles-api-yn2d.onrender.com/check-view-permission', payload);
+        const albumResponseURL = ref ? `https://bubbles-api-yn2d.onrender.com/check-view-permission?ref=${ref}` : 'https://bubbles-api-yn2d.onrender.com/check-view-permission';
+        const album_response = await axios.put(albumResponseURL, payload);
+
         setShowAlbum(album_response.data?.message);
         setAlbumData(album_response.data?.contents);
         setIP(ip_response.data?.ip);
