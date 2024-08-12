@@ -18,7 +18,7 @@ const Navbar = ({ Component, home, analytics, support, settings }) => {
   ];
 
   const navigationBottom = [
-    { name: 'Support', href: '/support', icon: RiQuestionLine, current: support },
+    { name: 'Support', href: 'https://github.com/binaryshrey/Bubbles/issues', icon: RiQuestionLine, current: support },
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
   ];
 
