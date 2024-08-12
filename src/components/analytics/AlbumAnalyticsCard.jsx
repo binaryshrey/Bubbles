@@ -4,7 +4,6 @@ import { formatDate } from '../utils/utils';
 import { UserAuth } from '../hooks/AuthContext';
 import { Link } from 'react-router-dom';
 import AnalyticsChart from './AnalyticsChart';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../common/card';
 
 const AlbumAnalyticsCard = ({ album }) => {
   const { user } = UserAuth();
@@ -15,14 +14,14 @@ const AlbumAnalyticsCard = ({ album }) => {
     <>
       <div className="w-full">
         <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-          <div className="flex gap-8">
-            <div className="w-44/100 h-64 d">
+          <div className="flex flex-col xl:flex-row gap-8">
+            <div className="w-full xl:w-44/100 h-64">
               <div className=" bg-black border border-zinc-800 rounded-md">
                 <p className="m-4 ml-4 text-white text-xs">Traffic Source(s)</p>
                 <AnalyticsChart analyticsData={album?.analytics} />
               </div>
             </div>
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between gap-4">
               <div>
                 <p className="text-zinc-500 text-sm">Name</p>
                 <p className="text-white text-sm">{album?.album_name}</p>

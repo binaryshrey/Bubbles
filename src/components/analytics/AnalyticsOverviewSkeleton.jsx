@@ -2,10 +2,10 @@ import { Skeleton } from '../../common/skeleton';
 
 const AnalyticsOverviewSkeleton = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex flex-col xl:flex-row gap-4 justify-between">
       <div>
-        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-          <div className="flex justify-between">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+          <div>
             <div className="flex justify-between gap-10">
               <div>
                 <Skeleton className="h-2 w-[20px] mt-2" />
@@ -19,8 +19,8 @@ const AnalyticsOverviewSkeleton = () => {
         </div>
       </div>
       <div>
-        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-          <div className="flex justify-between">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+          <div>
             <div className="flex justify-between gap-10">
               <div>
                 <Skeleton className="h-2 w-[20px] mt-2" />
@@ -34,8 +34,8 @@ const AnalyticsOverviewSkeleton = () => {
         </div>
       </div>
       <div>
-        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-          <div className="flex justify-between">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+          <div>
             <div className="flex justify-between gap-10">
               <div>
                 <Skeleton className="h-2 w-[20px] mt-2" />
@@ -49,8 +49,8 @@ const AnalyticsOverviewSkeleton = () => {
         </div>
       </div>
       <div>
-        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-          <div className="flex justify-between">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+          <div>
             <div className="flex justify-between gap-10">
               <div>
                 <Skeleton className="h-2 w-[20px] mt-2" />

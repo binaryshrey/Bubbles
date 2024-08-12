@@ -79,11 +79,11 @@ const AnalyticsOverview = () => {
       {loading && <AnalyticsOverviewSkeleton />}
       {!loading && (
         <>
-          <div className="flex justify-between">
+          <div className="flex flex-col xl:flex-row gap-2 justify-between ">
             {/* total albums */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-                <div className="flex justify-between">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+                <div>
                   <div className="flex justify-between gap-10">
                     <div>
                       <p className="text-zinc-300 text-sm">{analytics?.total_albums}</p>
@@ -98,8 +98,8 @@ const AnalyticsOverview = () => {
             </div>
             {/* live albums */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-                <div className="flex justify-between">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5  max-w-64">
+                <div>
                   <div className="flex justify-between gap-10">
                     <div>
                       <p className="text-zinc-300 text-sm">{analytics?.live_albums}</p>
@@ -114,8 +114,8 @@ const AnalyticsOverview = () => {
             </div>
             {/* total views */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-                <div className="flex justify-between">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+                <div>
                   <div className="flex justify-between gap-10">
                     <div>
                       <p className="text-zinc-300 text-sm">{analytics?.total_album_views}</p>
@@ -130,8 +130,8 @@ const AnalyticsOverview = () => {
             </div>
             {/* top source */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-                <div className="flex justify-between">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5  max-w-64">
+                <div>
                   <div className="flex justify-between gap-10">
                     <div>
                       <p className="text-zinc-300 text-sm">{analytics?.top_traffic_source}</p>

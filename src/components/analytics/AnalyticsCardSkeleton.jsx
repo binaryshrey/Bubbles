@@ -5,9 +5,9 @@ const AnalyticsCardSkeleton = () => {
     <>
       <div className="w-full">
         <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
-          <div className="flex gap-8">
-            <Skeleton className="h-64 w-44/100 mt-2 rounded-md" />
-            <div className="flex flex-col justify-between">
+          <div className="flex flex-col xl:flex-row gap-8">
+            <Skeleton className="h-64 w-full xl:w-44/100 mt-2 rounded-md" />
+            <div className="flex flex-col justify-between gap-6">
               <div>
                 <Skeleton className="h-2 w-[40px] mt-4" />
                 <Skeleton className="h-2 w-[100px] mt-2" />
