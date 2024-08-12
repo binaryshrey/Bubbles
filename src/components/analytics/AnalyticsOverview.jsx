@@ -82,7 +82,7 @@ const AnalyticsOverview = () => {
           <div className="flex flex-col xl:flex-row gap-2 justify-between ">
             {/* total albums */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64 hover:bg-zinc-900">
                 <div>
                   <div className="flex justify-between gap-10">
                     <div>
@@ -98,7 +98,7 @@ const AnalyticsOverview = () => {
             </div>
             {/* live albums */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5  max-w-64">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5  max-w-64 hover:bg-zinc-900">
                 <div>
                   <div className="flex justify-between gap-10">
                     <div>
@@ -114,7 +114,7 @@ const AnalyticsOverview = () => {
             </div>
             {/* total views */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 max-w-64 hover:bg-zinc-900">
                 <div>
                   <div className="flex justify-between gap-10">
                     <div>
@@ -130,7 +130,7 @@ const AnalyticsOverview = () => {
             </div>
             {/* top source */}
             <div>
-              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5  max-w-64">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5  max-w-64 hover:bg-zinc-900">
                 <div>
                   <div className="flex justify-between gap-10">
                     <div>
