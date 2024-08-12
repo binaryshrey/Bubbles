@@ -21,7 +21,7 @@ const LibraryCard = ({ album }) => {
     <>
       <div className="w-full xl:w-48/100 cursor-pointer ">
         <Link to="/analytics">
-          <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
+          <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 hover:bg-zinc-900">
             <div className="flex justify-between">
               <div className="flex gap-4">
                 <img src={loginBG} alt="lib" className="w-10 h-10 object-cover rounded-full" />

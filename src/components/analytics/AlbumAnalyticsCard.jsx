@@ -13,7 +13,7 @@ const AlbumAnalyticsCard = ({ album }) => {
   return (
     <>
       <div className="w-full">
-        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 hover:bg-zinc-900">
           <div className="flex flex-col xl:flex-row gap-8">
             <div className="w-full xl:w-44/100 h-64">
               <div className=" bg-black border border-zinc-800 rounded-md">
