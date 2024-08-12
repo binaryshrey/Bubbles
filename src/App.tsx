@@ -9,6 +9,7 @@ import { AuthContextProvider } from './components/hooks/AuthContext';
 
 const Login = React.lazy(() => import('./components/login/Login'));
 const Navbar = React.lazy(() => import('./components/dashboard/Navbar'));
+const Profile = React.lazy(() => import('./components/profile/Profile'));
 const Register = React.lazy(() => import('./components/register/Register'));
 const Settings = React.lazy(() => import('./components/settings/Settings'));
 const Analytics = React.lazy(() => import('./components/analytics/Analytics'));
@@ -68,6 +69,16 @@ const App = () => {
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Navbar Component={Settings} home={false} analytics={false} support={false} settings={true} />
+                  </ProtectedRoute>
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <React.Suspense fallback={<></>}>
+                  <ProtectedRoute>
+                    <Navbar Component={Profile} home={false} analytics={false} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }
