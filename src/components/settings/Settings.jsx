@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Input } from '../../common/input';
 import { Button } from '../../common/button';
+import SnackAlert from '../../common/SnackAlert';
+
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../common/alert-dialog';
 
 const Settings = () => {
+  //state
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackState, setSnackState] = useState('success');
+  const [snackMessage, setSnackMessage] = useState('');
+  const [email, setEmail] = useState('');
+
+  // side-effects
+  useEffect(() => {
+    const emailID = localStorage.getItem('email') ? JSON.parse(localStorage.getItem('email')) : '';
+    setEmail(emailID);
+  }, []);
+
+  // methods
+  const handleSnackbarOpen = () => {
+    setSnackbarOpen(true);
+  };
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+  const deleteAlbums = async () => {
+    try {
+      const del_response = await axios.delete('https://bubbles-api-yn2d.onrender.com/delete-albums', {
+        params: {
+          user_email: email,
+        },
+      });
+      setSnackMessage(del_response.data?.message);
+      setSnackState('success');
+    } catch (err) {
+      setSnackMessage(err.message);
+      setSnackState('error');
+    } finally {
+      handleSnackbarOpen();
+    }
+  };
+
   return (
     <div className="bg-black">
       <p className="text-white font-semibold text-xl md:text-2xl mb-4">Settings</p>
@@ -25,11 +65,12 @@ const Settings = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Delete</AlertDialogAction>
+              <AlertDialogAction onClick={deleteAlbums}>Delete</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
       </div>
+      <SnackAlert open={snackbarOpen} message={snackMessage} severity={snackState} onClose={handleSnackbarClose} />
     </div>
   );
 };
