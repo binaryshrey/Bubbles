@@ -10,6 +10,7 @@ import { AuthContextProvider } from './components/hooks/AuthContext';
 const Login = React.lazy(() => import('./components/login/Login'));
 const Navbar = React.lazy(() => import('./components/dashboard/Navbar'));
 const Register = React.lazy(() => import('./components/register/Register'));
+const Analytics = React.lazy(() => import('./components/analytics/Analytics'));
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
 const UploadAlbum = React.lazy(() => import('./components/album/UploadAlbum'));
 const PublishedAlbum = React.lazy(() => import('./components/album/PublishedAlbum'));
@@ -45,7 +46,17 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
-                    <Navbar Component={Dashboard} home={true} albums={false} contacts={false} support={false} settings={false} />
+                    <Navbar Component={Dashboard} home={true} analytics={false} support={false} settings={false} />
+                  </ProtectedRoute>
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <React.Suspense fallback={<></>}>
+                  <ProtectedRoute>
+                    <Navbar Component={Analytics} home={false} analytics={true} support={false} settings={false} />
                   </ProtectedRoute>
                 </React.Suspense>
               }

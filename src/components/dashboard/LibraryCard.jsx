@@ -20,7 +20,7 @@ const LibraryCard = ({ album }) => {
   return (
     <>
       <div className="w-full xl:w-48/100 cursor-pointer ">
-        <Link to="/shared-albums">
+        <Link to="/analytics">
           <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5">
             <div className="flex justify-between">
               <div className="flex gap-4">

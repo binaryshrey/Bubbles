@@ -10,11 +10,11 @@ import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remix
 
 /************************************************************ IMPORTS ************************************************************/
 
-const Navbar = ({ Component, home, albums, contacts, support, settings }) => {
+const Navbar = ({ Component, home, analytics, support, settings }) => {
   // global vars
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: RiHome6Line, current: home },
-    { name: 'Shared Albums', href: '/albums', icon: RiAlbumLine, current: albums },
+    { name: 'Album Analytics', href: '/analytics', icon: RiAlbumLine, current: analytics },
   ];
 
   const navigationBottom = [
