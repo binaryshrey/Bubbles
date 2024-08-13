@@ -16,7 +16,7 @@ const Dashboard = () => {
         <div className="relative text-zinc-600 flex items-center text-center focus:outline-none">
           <Input className="h-10 px-5 pr-16 rounded-lg text-sm dark" type="search" name="search" placeholder="Search" />
           <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
-            <RiSearchLine className=" flex-shrink-0 h-4 w-4 text-neutral-500 " aria-hidden="true" />
+            <RiSearchLine className=" flex-shrink-0 h-4 w-4 text-neutral-500 " />
           </button>
         </div>
       </div>
