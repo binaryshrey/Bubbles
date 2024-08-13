@@ -9,7 +9,7 @@ const navigation = [
 
 const Footer = () => {
   return (
-    <footer className="bg-black/[0.96] antialiased bg-grid-white/[0.02] px-4 md:px-6 mb-4">
+    <footer className="bg-black/[0.96] antialiased bg-grid-white/[0.02] px-4 md:px-6 pb-4">
       <div className="container mx-auto">
         <div className=" border-t border-zinc-600 pt-4 flex items-center justify-between">
           <div className="text-sm font-medium text-zinc-400">&copy; 2024 Bubbles Inc.</div>
