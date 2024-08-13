@@ -82,7 +82,7 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
         </div>
         {copyToClipBoardConfirm && <p className="text-xs text-green-500">Link copied to clipboard!</p>}
         <DialogClose asChild>
-          <Button type="button" variant="secondary" onClick={closeDialogURI}>
+          <Button type="button" variant="default" className="dark" onClick={closeDialogURI}>
             Go To Dashboard
           </Button>
         </DialogClose>
