@@ -12,7 +12,7 @@ import gmail from '../../assets/gmail.svg';
 import twitter from '../../assets/twitter.svg';
 import whatsapp from '../../assets/whatsapp.svg';
 import { WhatsappShareButton, FacebookShareButton, TwitterShareButton, TelegramShareButton, RedditShareButton, EmailShareButton } from 'react-share';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogClose } from '../../common/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogClose } from '../../common/dialog';
 
 /************************************************************ IMPORTS ************************************************************/
 

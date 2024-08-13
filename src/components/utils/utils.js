@@ -1,11 +1,3 @@
-import { db } from '../utils/Firebase';
-import {
-  query,
-  collection,
-  getDocs,
-  addDoc,
-  where
-} from 'firebase/firestore';
 import { storage } from './Firebase';
 import { ref, listAll } from "firebase/storage";
 
@@ -79,7 +71,7 @@ export const fetchSavedAlbumFolders = async (emailID) => {
       const parts = fullPath.split(':');
 
       // If the path has multiple parts, we can infer folder names
-      if (parts.length == 3) {
+      if (parts.length === 3) {
           folderSet.add(parts[0]);
         }
     });
@@ -97,39 +89,6 @@ export const fetchSavedAlbumFolders = async (emailID) => {
 }
 
 
-
-export const saveUserDataIfNewUser = async (user) => {
-
-    try{
-        const collection_ref = collection(db, 'users')
-        const querySnapshot = query(collection_ref, where("email", "==", user.email))
-        const doc_refs = await getDocs(querySnapshot);
-        const res = []
-        doc_refs.forEach(user => {
-            res.push({
-                id: user.id, 
-                ...user.data()
-            })
-        })
-
-        if(res.length === 0){
-        await addDoc(collection(db, 'users'), {
-            displayName : user.displayName,
-            email: user.email,
-            uid: user.uid,
-            phoneNumber : user.phoneNumber,
-            photoURL : user.photoURL,
-            onboarded : false,
-        }, { merge: true });
-        }
-    }
-    catch (error) {
-      console.error('Error saving user data:', error);
-    }
-  };
-
-
-
 export const formatDate = (inputDate)  => {
   const date = new Date(inputDate);
 
@@ -140,7 +99,6 @@ export const formatDate = (inputDate)  => {
 
   const day = date.getDate();
   const month = months[date.getMonth()];
-  const year = date.getFullYear();
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
 

@@ -7,7 +7,6 @@ import loginBG from '../../assets/loginBG.webp';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { saveUserDataIfNewUser } from '../utils/utils';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -33,7 +32,6 @@ const Register = () => {
   React.useEffect(() => {
     if (user != null) {
       if (Object.keys(user).length !== 0) {
-        saveUserDataIfNewUser(user);
         localStorage.setItem('email', JSON.stringify(user.email));
         navigate('/upload-album');
       }

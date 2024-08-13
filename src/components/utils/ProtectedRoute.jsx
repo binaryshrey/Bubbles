@@ -1,6 +1,9 @@
-import React from 'react';
+/************************************************************ IMPORTS ************************************************************/
+
 import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const ProtectedRoute = ({ children }) => {
   const { user } = UserAuth();

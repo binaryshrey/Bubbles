@@ -1,11 +1,17 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
 import { RiHome6Line, RiUserSmileLine, RiLogoutCircleRLine } from '@remixicon/react';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuItem } from '../../common/dropdown-menu';
 
+/************************************************************ IMPORTS ************************************************************/
+
 const ProfileMenu = () => {
+  // global vars
   const { logOut, user } = UserAuth();
 
+  // methods
   const handleSignOut = async () => {
     try {
       await logOut();
