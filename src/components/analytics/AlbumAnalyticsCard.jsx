@@ -1,8 +1,12 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import { Badge } from '@radix-ui/themes';
 import { formatDate } from '../utils/utils';
 import { UserAuth } from '../hooks/AuthContext';
 import { Link } from 'react-router-dom';
 import AnalyticsChart from './AnalyticsChart';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const AlbumAnalyticsCard = ({ album }) => {
   const { user } = UserAuth();

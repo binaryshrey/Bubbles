@@ -1,6 +1,11 @@
+/************************************************************ IMPORTS ************************************************************/
+
+import { auth } from '../utils/Firebase';
 import { useContext, createContext, useEffect, useState } from 'react';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../utils/Firebase';
+
+/************************************************************ IMPORTS ************************************************************/
+
 
 const AuthContext = createContext();
 

@@ -1,3 +1,5 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -5,6 +7,8 @@ import logo from '../../assets/logo-light.svg';
 import { Link } from 'react-router-dom';
 import Spotlight from '../utils/Spotlight';
 import banner from '../../assets/banner.png';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const handleScroll = () => {
   const element = document.getElementById('features-section');

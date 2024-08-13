@@ -1,5 +1,8 @@
-import React from 'react';
+/************************************************************ IMPORTS ************************************************************/
+
 import { RiGithubFill, RiLinkedinBoxFill, RiEarthFill } from '@remixicon/react';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const navigation = [
   { name: 'LinkedIn', href: 'https://in.linkedin.com/in/shreyanshsaurabh' },

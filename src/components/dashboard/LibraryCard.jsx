@@ -1,9 +1,13 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import loginBG from '../../assets/loginBG.webp';
 import { Badge } from '@radix-ui/themes';
 import { formatDate } from '../utils/utils';
 import { Link } from 'react-router-dom';
 import Timer from '../utils/Timer';
 import { getSecondsRemaining } from '../utils/utils';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const LibraryCard = ({ album }) => {
   const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;

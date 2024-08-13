@@ -1,3 +1,5 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import album from '../../assets/album_analytics.svg';
@@ -13,7 +15,10 @@ import telegram from '../../assets/telegram_analytics.svg';
 import SnackAlert from '../../common/SnackAlert';
 import AnalyticsOverviewSkeleton from './AnalyticsOverviewSkeleton';
 
+/************************************************************ IMPORTS ************************************************************/
+
 const AnalyticsOverview = () => {
+  // state
   const [analytics, setAnalytics] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

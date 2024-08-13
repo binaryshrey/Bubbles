@@ -1,12 +1,16 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-light.svg';
 import login from '../../assets/login.svg';
 import google from '../../assets/google.svg';
 import github from '../../assets/github.svg';
 import loginBG from '../../assets/loginBG.webp';
-import { Link } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Login = () => {
   const navigate = useNavigate();

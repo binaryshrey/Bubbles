@@ -1,3 +1,5 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import * as React from 'react';
 import logo from '../../assets/logo-light.svg';
 import SignUp from '../../assets/SignUp.svg';
@@ -7,6 +9,8 @@ import loginBG from '../../assets/loginBG.webp';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Register = () => {
   const navigate = useNavigate();

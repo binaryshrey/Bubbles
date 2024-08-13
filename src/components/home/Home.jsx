@@ -1,9 +1,12 @@
-import React from 'react';
+/************************************************************ IMPORTS ************************************************************/
+
 import HeroSection from './HeroSection';
 import Features from './Features';
 import FeaturesAnalytics from './FeaturesAnalytics';
 import CTA from './CTA';
 import Footer from './Footer';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Home = () => {
   return (
