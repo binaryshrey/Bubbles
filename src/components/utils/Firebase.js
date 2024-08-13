@@ -1,7 +1,11 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+
+/************************************************************ IMPORTS ************************************************************/
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

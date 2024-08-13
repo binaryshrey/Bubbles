@@ -1,6 +1,9 @@
-import React from 'react';
+/************************************************************ IMPORTS ************************************************************/
+
 import AnalyticsOverview from './AnalyticsOverview';
 import AlbumAnalytics from './AlbumAnalytics';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Analytics = () => {
   return (

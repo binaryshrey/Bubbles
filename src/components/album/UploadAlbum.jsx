@@ -8,7 +8,7 @@ import '../../styles/uploadAlbum.css';
 import { Input } from '../../common/input';
 import upload from '../../assets/upload.svg';
 import { storage } from '../utils/Firebase';
-import { Loader2, Copy } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { getFileType } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo-light.svg';
@@ -27,7 +27,6 @@ const UploadAlbum = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
-  const LINK_EXPIRE_TIME = `${process.env.REACT_APP_BUBBLE_LINK_EXPIRE_TIME}mins`;
   const ALBUM_PICS_SIZE_LIMIT = process.env.REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT * 1024 * 1024;
 
   // state

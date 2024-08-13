@@ -1,5 +1,9 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '../../common/chart';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../../common/chart';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const AnalyticsChart = ({ analyticsData }) => {
   const chartConfig = {

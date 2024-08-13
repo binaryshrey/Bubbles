@@ -1,6 +1,9 @@
-import React from 'react';
+/************************************************************ IMPORTS ************************************************************/
+
 import { UserAuth } from '../hooks/AuthContext';
 import { Button } from '../../common/button';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Profile = () => {
   const { logOut, user } = UserAuth();

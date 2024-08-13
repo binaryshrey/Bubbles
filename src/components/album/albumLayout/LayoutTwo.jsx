@@ -8,6 +8,7 @@ import { ReactImageCarouselViewer } from 'react-image-carousel-viewer';
 /************************************************************ IMPORTS ************************************************************/
 
 const LayoutTwo = ({ albumData }) => {
+  // state
   const [index, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 

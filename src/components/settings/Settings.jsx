@@ -1,10 +1,13 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Input } from '../../common/input';
 import { Button } from '../../common/button';
 import SnackAlert from '../../common/SnackAlert';
-
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../common/alert-dialog';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Settings = () => {
   //state

@@ -5,14 +5,14 @@ import { Copy } from 'lucide-react';
 import { Input } from '../../common/input';
 import { Label } from '../../common/label';
 import { Button } from '.././../common/button';
-import telegram from '../../assets/telegram.svg';
-import reddit from '../../assets/reddit.svg';
-import fb from '../../assets/fb.svg';
-import gmail from '../../assets/gmail.svg';
-import twitter from '../../assets/twitter.svg';
-import whatsapp from '../../assets/whatsapp.svg';
+import telegram from '../../assets/telegram.png';
+import reddit from '../../assets/reddit.png';
+import fb from '../../assets/fb.png';
+import gmail from '../../assets/gmail.png';
+import twitter from '../../assets/twitter.png';
+import whatsapp from '../../assets/whatsapp.png';
 import { WhatsappShareButton, FacebookShareButton, TwitterShareButton, TelegramShareButton, RedditShareButton, EmailShareButton } from 'react-share';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogClose } from '../../common/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogClose } from '../../common/dialog';
 
 /************************************************************ IMPORTS ************************************************************/
 

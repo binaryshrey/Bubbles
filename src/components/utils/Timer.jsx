@@ -22,7 +22,7 @@ const Timer = ({ timeRemaining, albumName }) => {
 
   // side-effects
   useEffect(() => {
-    if (!isTimerRunning || timeLeft == 0) return; // Exit early if the timer is not running
+    if (!isTimerRunning || timeLeft === 0) return; // Exit early if the timer is not running
 
     const timerInterval = setInterval(() => {
       setTimePassed((prev) => {

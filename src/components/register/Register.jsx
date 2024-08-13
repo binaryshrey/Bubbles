@@ -1,3 +1,5 @@
+/************************************************************ IMPORTS ************************************************************/
+
 import * as React from 'react';
 import logo from '../../assets/logo-light.svg';
 import SignUp from '../../assets/SignUp.svg';
@@ -7,7 +9,8 @@ import loginBG from '../../assets/loginBG.webp';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { saveUserDataIfNewUser } from '../utils/utils';
+
+/************************************************************ IMPORTS ************************************************************/
 
 const Register = () => {
   const navigate = useNavigate();
@@ -33,7 +36,6 @@ const Register = () => {
   React.useEffect(() => {
     if (user != null) {
       if (Object.keys(user).length !== 0) {
-        saveUserDataIfNewUser(user);
         localStorage.setItem('email', JSON.stringify(user.email));
         navigate('/upload-album');
       }

@@ -9,6 +9,7 @@ import { ReactImageCarouselViewer } from 'react-image-carousel-viewer';
 /************************************************************ IMPORTS ************************************************************/
 
 const MasonryLayout = ({ albumData }) => {
+  // state
   const [index, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
