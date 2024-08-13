@@ -50,7 +50,7 @@ const Settings = () => {
       <div className="flex flex-shrink-0 border-t border-zinc-800 mt-4 mb-4"></div>
       <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 w-full flex justify-between items-center">
         <p className="text-white text-sm">Bubbles Album Link Expiration Time</p>
-        <Input id="link" defaultValue="5 mins" readOnly className="dark w-20" />
+        <Input id="link" defaultValue="5 mins" readOnly className="dark w-[76px]" />
       </div>
       <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 w-full flex justify-between items-center mt-4">
         <p className="text-white text-sm">Delete My Albums With Associated Data</p>
