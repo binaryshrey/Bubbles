@@ -1,11 +1,13 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import { useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useState, useEffect } from 'react';
 import { Dialog } from '@headlessui/react';
 import { RiMenuLine, RiCloseFill } from '@remixicon/react';
 import logo from '../../assets/logo-light.svg';
 import { Link } from 'react-router-dom';
-import Spotlight from '../utils/Spotlight';
+// import Spotlight from '../utils/Spotlight';
 import banner from '../../assets/banner.png';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -20,9 +22,13 @@ const handleScroll = () => {
 const HeroSection = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="isolate bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
-      <Spotlight className="-top-20 left-10 md:left-60 md:-top-20" fill="white" />
+      {/* <Spotlight className="-top-20 left-10 md:left-60 md:-top-20" fill="white" /> */}
       <div className="px-6 pt-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1">
@@ -100,13 +106,15 @@ const HeroSection = () => {
         <div className="relative py-24 sm:py-32 lg:pb-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="text-2xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 sm:text-5xl">
+              <h1 data-aos="zoom-in" className="text-2xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 sm:text-5xl">
                 Instantly Share & Celebrate
                 <br />
                 Your Magical Moments
               </h1>
-              <p className="text-xs md:text-lg mt-6 text-lg leading-8 text-neutral-300">With Bubbles Album Links That Pops After 5 mins</p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              <p data-aos="zoom-in" className="text-xs md:text-lg mt-6 text-lg leading-8 text-neutral-300">
+                With Bubbles Album Links That Pops After 5 mins
+              </p>
+              <div data-aos="fade-up" data-aos-duration="800" className="mt-10 flex items-center justify-center gap-x-6">
                 <Link to="/login" className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-black shadow-sm hover:bg-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
                   Get started
                 </Link>
@@ -115,7 +123,7 @@ const HeroSection = () => {
                 </a>
               </div>
             </div>
-            <div className="mt-16 flow-root sm:mt-24">
+            <div data-aos="fade-up" data-aos-duration="800" className="mt-16 flow-root sm:mt-24">
               <div className="-m-2 rounded-xl bg-zinc-700 p-2 ring-1 ring-inset ring-slate-500/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                 <img src={banner} alt="App screenshot" width={2432} height={1442} className="rounded-md shadow-2xl ring-1 ring-gray-900/10" />
               </div>
