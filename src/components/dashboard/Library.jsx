@@ -49,7 +49,6 @@ const Library = () => {
             user_email: emailID,
           },
         });
-        console.log(response.data);
         setAlbums(response.data?.albums?.reverse());
         setAlbumsExpiring(response.data?.albums_expiring);
       } catch (err) {

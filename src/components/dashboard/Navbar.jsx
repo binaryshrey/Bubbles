@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-light.svg';
 import { UserAuth } from '../hooks/AuthContext';
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine } from '@remixicon/react';
+import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine, RiCloseFill, RiMenuLine } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -47,7 +46,7 @@ const Navbar = ({ Component, home, analytics, support, settings }) => {
                     <div className="absolute top-0 right-0 -mr-12 pt-2">
                       <button type="button" className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" onClick={() => setSidebarOpen(false)}>
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                        <RiCloseFill className="h-6 w-6 text-white" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -138,7 +137,7 @@ const Navbar = ({ Component, home, analytics, support, settings }) => {
           <div className="sticky top-0 z-10 bg-zinc-800 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button type="button" className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-white " onClick={() => setSidebarOpen(true)}>
               <span className="sr-only">Open sidebar</span>
-              <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" />
+              <RiMenuLine className="h-6 w-6 text-white" aria-hidden="true" />
             </button>
           </div>
           <main className="flex-1 bg-black">

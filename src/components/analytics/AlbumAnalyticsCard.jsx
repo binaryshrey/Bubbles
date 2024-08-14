@@ -11,7 +11,6 @@ import AnalyticsChart from './AnalyticsChart';
 const AlbumAnalyticsCard = ({ album }) => {
   const { user } = UserAuth();
   const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;
-  console.log(album);
 
   return (
     <>

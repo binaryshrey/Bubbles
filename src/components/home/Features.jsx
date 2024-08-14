@@ -11,16 +11,15 @@ const features = [
     icon: RiEyeFill,
   },
   {
-    name: 'Link Analytics',
-    description: 'Stay informed with real-time insights. Our built-in analytics lets you track how many times your link was accessed, providing you with valuable info on your album’s reach and engagement.',
-    icon: RiPieChartFill,
-  },
-  {
     name: '5-Minute Links',
     description: ' Each link you create is available for just 5 minutes. This temporary access ensures that your photos are shared quickly and discreetly, giving you complete control over how long they remain accessible.',
     icon: RiTimeFill,
   },
-
+  {
+    name: 'Link Analytics',
+    description: 'Stay informed with real-time insights. Our built-in analytics lets you track how many times your link was accessed, providing you with valuable info on your album’s reach and engagement.',
+    icon: RiPieChartFill,
+  },
   {
     name: 'Open Source',
     description: 'Transparency and community are at the heart of Bubbles. As an open-source project, we invite you to explore, contribute, and enhance the app. Our commitment to open source means you can trust in our integrity and be part of our evolving journey.',

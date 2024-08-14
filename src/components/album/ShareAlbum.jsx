@@ -21,8 +21,6 @@ const ShareAlbum = ({ showDialogURI, setShowDialogURI, LINK_EXPIRE_TIME, albumUR
   const [timeLeft, setTimeLeft] = useState(LINK_EXPIRE_TIME * 60);
   const shareContent = `Hey! Check out my new Bubbles album :\n${albumURI}`;
 
-  console.log('albumURI:', albumURI);
-
   // side-effects
   useEffect(() => {
     if (timeLeft <= 0) return;

@@ -76,7 +76,6 @@ const UploadAlbum = () => {
       .writeText(text)
       .then(() => {
         handleCopyToClipBoardConfirm();
-        console.log('Text copied to clipboard!');
       })
       .catch((err) => {
         console.error('Failed to copy text: ', err);
@@ -174,12 +173,10 @@ const UploadAlbum = () => {
         album_photos: albumImageURIs,
         created_at: getAlbumPublishDate(),
       };
-      console.log('Payload:', payload);
       await axios.post('https://bubbles-api-yn2d.onrender.com/add-link', payload);
 
       setLoading(false);
       setSnackAlertMessage('');
-      console.log('All files uploaded successfully');
       openDialogURI();
     } catch (error) {
       setSnackAlertMessage(error.message);

@@ -48,7 +48,6 @@ const AlbumAnalytics = () => {
             user_email: emailID,
           },
         });
-        console.log(response.data);
         setAlbums(response.data?.albums?.reverse());
       } catch (err) {
         setError(err.message);

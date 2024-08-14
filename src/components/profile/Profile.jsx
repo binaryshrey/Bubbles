@@ -16,7 +16,6 @@ const Profile = () => {
     }
   };
 
-  console.log(user);
   return (
     <div className="bg-black h-screen">
       <div className="bg-zinc-950 border border-zinc-900 rounded-md p-5 w-full h-48 relative flex  justify-center">

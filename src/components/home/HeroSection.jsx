@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { RiMenuLine, RiCloseFill } from '@remixicon/react';
 import logo from '../../assets/logo-light.svg';
 import { Link } from 'react-router-dom';
 import Spotlight from '../utils/Spotlight';
@@ -34,7 +34,7 @@ const HeroSection = () => {
           <div className="flex lg:hidden">
             <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(true)}>
               <span className="sr-only text-white">Open main menu</span>
-              <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" />
+              <RiMenuLine className="h-6 w-6 text-white" aria-hidden="true" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -67,7 +67,7 @@ const HeroSection = () => {
               <h4 className="ml-2 text-white sm:text-2xl">Bubbles</h4>
               <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
                 <span className="sr-only text-white">Close menu</span>
-                <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                <RiCloseFill className="h-6 w-6 text-white" aria-hidden="true" />
               </button>
             </div>
             <div className="mt-6 flow-root">

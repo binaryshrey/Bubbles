@@ -63,7 +63,6 @@ const AnalyticsOverview = () => {
             user_email: emailID,
           },
         });
-        console.log(response.data);
         setAnalytics(response.data?.analytics);
       } catch (err) {
         setError(err.message);
