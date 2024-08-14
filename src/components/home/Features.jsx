@@ -1,5 +1,8 @@
 /************************************************************ IMPORTS ************************************************************/
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 import { RiEyeFill, RiTimeFill, RiPieChartFill, RiEarthFill } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -28,10 +31,14 @@ const features = [
 ];
 
 const Features = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="isolate bg-black/[0.96] antialiased bg-grid-white/[0.02] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl lg:text-center">
+        <div data-aos="fade-up" data-aos-duration="500" className="mx-auto max-w-4xl lg:text-center">
           <h2 className="text-xl font-semibold leading-7 text-neutral-500">Share Images With Confidence</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-3xl">The ultimate photos sharing app with a twist</p>
           <p className="mt-6 text-sm sm:text-lg leading-8 text-neutral-500">
@@ -42,7 +49,7 @@ const Features = () => {
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
-              <div key={feature.name} className="relative pl-16">
+              <div data-aos="fade-up" key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-zinc-400">
                   <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-white">
                     <feature.icon className="h-6 w-6 text-black" />

@@ -71,7 +71,7 @@ const PublishedAlbum = () => {
     <>
       <div className="bg-black h-screen">
         {loading && (
-          <div className="bg-black mt-20 flex justify-center text-center">
+          <div className="bg-black pt-20 flex justify-center text-center">
             <Skeleton className="h-4 w-[160px]" />
           </div>
         )}
