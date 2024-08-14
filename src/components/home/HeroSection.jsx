@@ -7,8 +7,12 @@ import { Dialog } from '@headlessui/react';
 import { RiMenuLine, RiCloseFill } from '@remixicon/react';
 import logo from '../../assets/logo-light.svg';
 import { Link } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../hooks/AuthContext';
 // import Spotlight from '../utils/Spotlight';
 import banner from '../../assets/banner.png';
+import { Button } from '../../common/button';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -20,11 +24,46 @@ const handleScroll = () => {
 };
 
 const HeroSection = () => {
+  const { user } = UserAuth();
+  const navigate = useNavigate();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [loadingButton, setLoadingButton] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
 
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const handleGetStarted = () => {
+    setLoadingButton(true);
+    setTimeout(() => {
+      setLoadingButton(false);
+      if (user != null) {
+        if (Object.keys(user).length !== 0) {
+          localStorage.setItem('email', JSON.stringify(user.email));
+          navigate('/upload-album');
+        }
+      } else {
+        navigate('/login');
+      }
+    }, 1000);
+  };
+
+  const handleLogin = () => {
+    setLoadingLogin(true);
+    setTimeout(() => {
+      setLoadingLogin(false);
+      if (user != null) {
+        if (Object.keys(user).length !== 0) {
+          localStorage.setItem('email', JSON.stringify(user.email));
+          navigate('/upload-album');
+        }
+      } else {
+        navigate('/login');
+      }
+    }, 1000);
+  };
 
   return (
     <div className="isolate bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
@@ -58,9 +97,17 @@ const HeroSection = () => {
             </a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link to="/login" className="text-sm font-semibold leading-6 text-white">
-              Log in
-            </Link>
+            {loadingLogin && (
+              <div className="flex items-center text-sm font-semibold leading-6 text-white cursor-pointer">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Log in
+              </div>
+            )}
+            {!loadingLogin && (
+              <p className="text-sm font-semibold leading-6 text-white cursor-pointer" onClick={handleLogin}>
+                Log in
+              </p>
+            )}
           </div>
         </nav>
 
@@ -93,9 +140,17 @@ const HeroSection = () => {
                   </a>
                 </div>
                 <div className="py-6">
-                  <Link to="/login" className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-white">
-                    Log in
-                  </Link>
+                  {loadingLogin && (
+                    <div className="flex items-center text-sm font-semibold leading-6 text-white cursor-pointer">
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Log in
+                    </div>
+                  )}
+                  {!loadingLogin && (
+                    <p className="text-sm font-semibold leading-6 text-white cursor-pointer" onClick={handleLogin}>
+                      Log in
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -115,11 +170,19 @@ const HeroSection = () => {
                 With Bubbles Album Links That Pops After 5 mins
               </p>
               <div data-aos="fade-up" data-aos-duration="800" className="mt-10 flex items-center justify-center gap-x-6">
-                <Link to="/login" className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-black shadow-sm hover:bg-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                  Get started
-                </Link>
+                {loadingButton && (
+                  <Button className="dark" disabled>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Get Started
+                  </Button>
+                )}
+                {!loadingButton && (
+                  <Button className="dark" onClick={handleGetStarted}>
+                    Get Started
+                  </Button>
+                )}
+
                 <a href="https://github.com/binaryshrey/Bubbles" className="text-base font-semibold leading-7 text-white">
-                  Learn more <span aria-hidden="true">→</span>
+                  Learn more <span>→</span>
                 </a>
               </div>
             </div>
