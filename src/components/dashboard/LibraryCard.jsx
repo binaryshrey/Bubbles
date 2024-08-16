@@ -5,16 +5,17 @@ import { Badge } from '@radix-ui/themes';
 import { formatDate } from '../utils/utils';
 import { Link } from 'react-router-dom';
 import Timer from '../utils/Timer';
+import { BASE_APP_URI } from '../utils/Constants';
 import { getSecondsRemaining } from '../utils/utils';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const LibraryCard = ({ album }) => {
-  const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;
-  const albumDisplayLink = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 8)}...`;
-  const albumDisplayLinkExpired = `https://bubbles-inc.vercel.app/albums/${album.link_id.substring(0, 18)}...`;
-  const albumDisplayLinkMobile = `https://bubbles-inc.vercel.app/alb...`;
-  const albumDisplayLinkExpiredMobile = `https://bubbles-inc.vercel.app/albums/...`;
+  const albumLink = `${BASE_APP_URI}/albums/${album.link_id}`;
+  const albumDisplayLink = `${BASE_APP_URI}/albums/${album.link_id.substring(0, 8)}...`;
+  const albumDisplayLinkExpired = `${BASE_APP_URI}/albums/${album.link_id.substring(0, 18)}...`;
+  const albumDisplayLinkMobile = `${BASE_APP_URI}/alb...`;
+  const albumDisplayLinkExpiredMobile = `${BASE_APP_URI}/albums/...`;
 
   const openAlbum = (albumLink) => {
     window.open(albumLink, '_blank', 'noopener,noreferrer');

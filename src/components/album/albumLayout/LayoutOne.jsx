@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { BASE_APP_URI } from '../../utils/Constants';
 import logoLight from '../../../assets/logo-light.svg';
 import { ReactImageCarouselViewer } from 'react-image-carousel-viewer';
 
@@ -47,7 +48,7 @@ const LayoutOne = ({ albumData }) => {
         </div>
       </div>
       <div className="m-4">
-        <Link to="https://bubbles-inc.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <Link to={BASE_APP_URI} target="_blank" rel="noopener noreferrer">
           <div className="fixed bottom-0 right-0 m-4">
             <div className="bg-zinc-800 flex rounded-full items-center">
               <img src={logoLight} alt="Bubbles" className="h-3 w-auto ml-2" />

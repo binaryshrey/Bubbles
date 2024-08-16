@@ -13,6 +13,7 @@ import { UserAuth } from '../hooks/AuthContext';
 // import Spotlight from '../utils/Spotlight';
 import banner from '../../assets/banner.png';
 import { Button } from '../../common/button';
+import { BETTERSTACK_URI, GITHUB_URI, LINKEDIN_URI } from '../utils/Constants';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -83,16 +84,16 @@ const HeroSection = () => {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            <a href="https://github.com/binaryshrey/Bubbles" target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-white">
+            <a href={GITHUB_URI} target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-white">
               Github
             </a>
             <p onClick={handleScroll} className="text-sm font-semibold leading-6 text-white cursor-pointer">
               Features
             </p>
-            <a href="https://bubbles.betteruptime.com/" target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-white">
+            <a href={BETTERSTACK_URI} target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-white">
               Status
             </a>
-            <a href="https://in.linkedin.com/in/shreyanshsaurabh" target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-white">
+            <a href={LINKEDIN_URI} target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-white">
               Contact
             </a>
           </div>
@@ -126,16 +127,16 @@ const HeroSection = () => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  <a href="https://github.com/binaryshrey/Bubbles" target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white">
+                  <a href={GITHUB_URI} target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white">
                     Github
                   </a>
                   <p onClick={handleScroll} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white cursor-pointer">
                     Features
                   </p>
-                  <a href="https://bubbles.betteruptime.com/" target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white">
+                  <a href={BETTERSTACK_URI} target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white">
                     Status
                   </a>
-                  <a href="https://in.linkedin.com/in/shreyanshsaurabh" target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white">
+                  <a href={LINKEDIN_URI} target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white">
                     Contact
                   </a>
                 </div>
@@ -181,7 +182,7 @@ const HeroSection = () => {
                   </Button>
                 )}
 
-                <a href="https://github.com/binaryshrey/Bubbles" className="text-base font-semibold leading-7 text-white">
+                <a href={GITHUB_URI} className="text-base font-semibold leading-7 text-white">
                   Learn more <span>→</span>
                 </a>
               </div>

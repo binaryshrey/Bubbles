@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Input } from '../../common/input';
 import { Button } from '../../common/button';
 import SnackAlert from '../../common/SnackAlert';
+import { BASE_API_URI } from '../utils/Constants';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../common/alert-dialog';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -32,7 +33,7 @@ const Settings = () => {
 
   const deleteAlbums = async () => {
     try {
-      const del_response = await axios.delete('https://bubbles-api-yn2d.onrender.com/delete-albums', {
+      const del_response = await axios.delete(`${BASE_API_URI}/delete-albums`, {
         params: {
           user_email: email,
         },

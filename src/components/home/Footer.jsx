@@ -1,13 +1,14 @@
 /************************************************************ IMPORTS ************************************************************/
 
+import { BASE_APP_URI, GITHUB_URI, LINKEDIN_URI } from '../utils/Constants';
 import { RiGithubFill, RiLinkedinBoxFill, RiEarthFill } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const navigation = [
-  { name: 'LinkedIn', href: 'https://in.linkedin.com/in/shreyanshsaurabh' },
-  { name: 'Github', href: 'https://github.com/binaryshrey/Bubbles' },
-  { name: 'Public', href: 'https://bubbles-inc.vercel.app/' },
+  { name: 'LinkedIn', href: LINKEDIN_URI },
+  { name: 'Github', href: GITHUB_URI },
+  { name: 'Public', href: BASE_APP_URI },
 ];
 
 const Footer = () => {

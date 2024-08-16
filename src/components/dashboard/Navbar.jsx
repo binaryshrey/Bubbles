@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-light.svg';
 import { UserAuth } from '../hooks/AuthContext';
 import { Dialog, Transition } from '@headlessui/react';
+import { GITHUB_ISSUES_URI } from '../utils/Constants';
 import { RiHome6Line, RiQuestionLine, RiSettingsLine, RiAlbumLine, RiCloseFill, RiMenuLine } from '@remixicon/react';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -17,7 +18,7 @@ const Navbar = ({ Component, home, analytics, support, settings }) => {
   ];
 
   const navigationBottom = [
-    { name: 'Support', href: 'https://github.com/binaryshrey/Bubbles/issues', icon: RiQuestionLine, current: support },
+    { name: 'Support', href: GITHUB_ISSUES_URI, icon: RiQuestionLine, current: support },
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
   ];
 

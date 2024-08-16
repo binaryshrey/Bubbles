@@ -6,6 +6,7 @@ import LibraryCard from './LibraryCard';
 import empty from '../../assets/empty.json';
 import LibrarySkeleton from './LibrarySkeleton';
 import SnackAlert from '../../common/SnackAlert';
+import { BASE_API_URI } from '../utils/Constants';
 import React, { useState, useEffect } from 'react';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -44,7 +45,7 @@ const Library = () => {
         setLoading(true);
         setError('');
 
-        const response = await axios.get('https://bubbles-api-yn2d.onrender.com/get-albums/', {
+        const response = await axios.get(`${BASE_API_URI}/get-albums`, {
           params: {
             user_email: emailID,
           },

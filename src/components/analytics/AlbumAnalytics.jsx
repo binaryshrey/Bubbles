@@ -6,6 +6,7 @@ import AlbumAnalyticsCard from './AlbumAnalyticsCard';
 import empty from '../../assets/empty.json';
 import SnackAlert from '../../common/SnackAlert';
 import React, { useState, useEffect } from 'react';
+import { BASE_API_URI } from '../utils/Constants';
 import AnalyticsCardSkeleton from './AnalyticsCardSkeleton';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -43,7 +44,7 @@ const AlbumAnalytics = () => {
         setLoading(true);
         setError('');
 
-        const response = await axios.get('https://bubbles-api-yn2d.onrender.com/get-albums/', {
+        const response = await axios.get(`${BASE_API_URI}/get-albums`, {
           params: {
             user_email: emailID,
           },

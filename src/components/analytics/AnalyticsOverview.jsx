@@ -13,6 +13,7 @@ import fb from '../../assets/fb_analytics.svg';
 import reddit from '../../assets/reddit_analytics.svg';
 import telegram from '../../assets/telegram_analytics.svg';
 import SnackAlert from '../../common/SnackAlert';
+import { BASE_API_URI } from '../utils/Constants';
 import AnalyticsOverviewSkeleton from './AnalyticsOverviewSkeleton';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -58,7 +59,7 @@ const AnalyticsOverview = () => {
         setLoading(true);
         setError('');
 
-        const response = await axios.get('https://bubbles-api-yn2d.onrender.com/analytics-overview', {
+        const response = await axios.get(`${BASE_API_URI}/analytics-overview`, {
           params: {
             user_email: emailID,
           },
