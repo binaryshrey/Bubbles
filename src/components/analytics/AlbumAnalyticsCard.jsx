@@ -4,13 +4,14 @@ import { Badge } from '@radix-ui/themes';
 import { formatDate } from '../utils/utils';
 import { UserAuth } from '../hooks/AuthContext';
 import { Link } from 'react-router-dom';
+import { BASE_APP_URI } from '../utils/Constants';
 import AnalyticsChart from './AnalyticsChart';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const AlbumAnalyticsCard = ({ album }) => {
   const { user } = UserAuth();
-  const albumLink = `https://bubbles-inc.vercel.app/albums/${album.link_id}`;
+  const albumLink = `${BASE_APP_URI}/albums/${album.link_id}`;
 
   return (
     <>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import ShareAlbum from './ShareAlbum';
 import '../../styles/uploadAlbum.css';
+import { auth } from '../utils/Firebase';
 import { Input } from '../../common/input';
 import upload from '../../assets/upload.svg';
 import { storage } from '../utils/Firebase';
@@ -16,6 +17,7 @@ import ProfileMenu from '../utils/ProfileMenu';
 import { Button } from '.././../common/button';
 import { UserAuth } from '../hooks/AuthContext';
 import SnackAlert from '../../common/SnackAlert';
+import { BASE_API_URI, BASE_APP_URI } from '../utils/Constants';
 import { getAlbumPublishDate } from '../utils/utils';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { RiPencilFill, RiAddLargeFill, RiDeleteBin4Fill } from '@remixicon/react';
@@ -115,7 +117,7 @@ const UploadAlbum = () => {
 
     const publishAlbumID = uuidv4();
     setAlbumID(publishAlbumID);
-    setAlbumURI(`https://bubbles-inc.vercel.app/albums/${publishAlbumID}`);
+    setAlbumURI(`${BASE_APP_URI}/albums/${publishAlbumID}`);
 
     try {
       const uploadPromises = albumFiles.map((file) => {
@@ -124,7 +126,7 @@ const UploadAlbum = () => {
           contentType: file.type,
           customMetadata: {
             albumID: publishAlbumID,
-            albumURI: `https://bubbles-inc.vercel.app/albums/${publishAlbumID}`,
+            albumURI: `${BASE_APP_URI}/albums/${publishAlbumID}`,
             albumAuthor: email,
             albumName: albumName === '' ? 'Untitled Album' : albumName,
             albumCreatedAt: getAlbumPublishDate(),
@@ -173,7 +175,15 @@ const UploadAlbum = () => {
         album_photos: albumImageURIs,
         created_at: getAlbumPublishDate(),
       };
-      await axios.post('https://bubbles-api-yn2d.onrender.com/add-link', payload);
+
+      const currentUser = auth.currentUser;
+      const idToken = await currentUser.getIdToken();
+
+      await axios.post(`${BASE_API_URI}/add-link`, payload, {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
 
       setLoading(false);
       setSnackAlertMessage('');

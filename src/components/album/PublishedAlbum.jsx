@@ -6,6 +6,7 @@ import LayoutOne from './albumLayout/LayoutOne';
 import LayoutTwo from './albumLayout/LayoutTwo';
 import { Skeleton } from '../../common/skeleton';
 import SnackAlert from '../../common/SnackAlert';
+import { IP_URI, BASE_API_URI } from '../utils/Constants';
 import LayoutThree from './albumLayout/LayoutThree';
 import PageNotFound from '../not-found/PageNotFound';
 import MasonryLayout from './albumLayout/MasonryLayout';
@@ -40,7 +41,7 @@ const PublishedAlbum = () => {
   useEffect(() => {
     const fetchAlbum = async () => {
       try {
-        const ip_response = await axios.get('https://api.ipify.org', {
+        const ip_response = await axios.get(IP_URI, {
           params: {
             format: 'json',
           },
@@ -51,7 +52,7 @@ const PublishedAlbum = () => {
           ip_address: ip_response.data?.ip,
         };
 
-        const albumResponseURL = ref ? `https://bubbles-api-yn2d.onrender.com/check-view-permission?ref=${ref}` : 'https://bubbles-api-yn2d.onrender.com/check-view-permission';
+        const albumResponseURL = ref ? `${BASE_API_URI}/check-view-permission?ref=${ref}` : `${BASE_API_URI}/check-view-permission`;
         const album_response = await axios.put(albumResponseURL, payload);
 
         setShowAlbum(album_response.data?.message);

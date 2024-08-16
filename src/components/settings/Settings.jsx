@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { auth } from '../utils/Firebase';
 import { Input } from '../../common/input';
 import { Button } from '../../common/button';
 import SnackAlert from '../../common/SnackAlert';
+import { BASE_API_URI } from '../utils/Constants';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../common/alert-dialog';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -32,13 +34,20 @@ const Settings = () => {
 
   const deleteAlbums = async () => {
     try {
-      const del_response = await axios.delete('https://bubbles-api-yn2d.onrender.com/delete-albums', {
-        params: {
-          user_email: email,
-        },
-      });
-      setSnackMessage(del_response.data?.message);
-      setSnackState('success');
+      const user = auth.currentUser;
+      if (user) {
+        const idToken = await user.getIdToken();
+        const del_response = await axios.delete(`${BASE_API_URI}/delete-albums`, {
+          params: {
+            user_email: email,
+          },
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
+        setSnackMessage(del_response.data?.message);
+        setSnackState('success');
+      }
     } catch (err) {
       setSnackMessage(err.message);
       setSnackState('error');
