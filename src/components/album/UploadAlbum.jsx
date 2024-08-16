@@ -5,6 +5,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import ShareAlbum from './ShareAlbum';
 import '../../styles/uploadAlbum.css';
+import { auth } from '../utils/Firebase';
 import { Input } from '../../common/input';
 import upload from '../../assets/upload.svg';
 import { storage } from '../utils/Firebase';
@@ -174,7 +175,15 @@ const UploadAlbum = () => {
         album_photos: albumImageURIs,
         created_at: getAlbumPublishDate(),
       };
-      await axios.post(`${BASE_API_URI}/add-link`, payload);
+
+      const currentUser = auth.currentUser;
+      const idToken = await currentUser.getIdToken();
+
+      await axios.post(`${BASE_API_URI}/add-link`, payload, {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
 
       setLoading(false);
       setSnackAlertMessage('');
