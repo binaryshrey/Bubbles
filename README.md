@@ -1,6 +1,6 @@
 # Bubbles ![Vercel deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=vercel&label=vercel) ![Render deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=render&label=render) ![BetterStack deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=betterstack&label=betterstack) ![supabase](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=supabase&label=supabase) ![Upstash-redis](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=upstash&label=upstash) 
 
-Instantly Share & Celebrate Your Magical Moments - with Bubbles album links that pops after 5 mins: [View](https://bubbles-inc.vercel.app/)
+Instantly Share & Celebrate Your Magical Moments - with Bubbles view-once album links that pops after 5 mins: [View](https://bubbles-inc.vercel.app/)
 
 ![Banner](https://raw.githubusercontent.com/binaryshrey/Bubbles/main/src/assets/product.webp)
 
