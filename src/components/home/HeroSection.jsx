@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Dialog } from '@headlessui/react';
 import { RiMenuLine, RiCloseFill } from '@remixicon/react';
 import logo from '../../assets/logo-light.svg';
+import peerlist from '../../assets/peerlist.svg';
 import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -162,6 +163,9 @@ const HeroSection = () => {
         <div className="relative py-24 sm:py-32 lg:pb-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
+              <Link to="https://peerlist.io/shreyansh07/project/bubbles" target="_blank" rel="noopener noreferrer">
+                <img src={peerlist} alt="Peerlist" className="mx-auto -mt-12 mb-12" />
+              </Link>
               <h1 data-aos="zoom-in" className="text-2xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 sm:text-5xl">
                 Instantly Share & Celebrate
                 <br />
