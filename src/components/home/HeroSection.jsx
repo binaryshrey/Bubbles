@@ -168,7 +168,7 @@ const HeroSection = () => {
                 Your Magical Moments
               </h1>
               <p data-aos="zoom-in" className="text-xs md:text-lg mt-6 text-lg leading-8 text-neutral-300">
-                With Bubbles Album Links That Pops After 5 mins
+                With Bubbles View-Once Album Links That Pops After 5 mins
               </p>
               <div data-aos="fade-up" data-aos-duration="800" className="mt-10 flex items-center justify-center gap-x-6">
                 {loadingButton && (
