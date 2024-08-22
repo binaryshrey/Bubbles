@@ -1,4 +1,4 @@
-# Bubbles ![Vercel deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=vercel&label=vercel) ![Render deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=render&label=render) ![BetterStack deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=betterstack&label=betterstack) ![supabase](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=supabase&label=supabase) ![Upstash-redis](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=upstash&label=upstash) 
+<img width="2591" alt="image" src="https://github.com/user-attachments/assets/b21d40c9-0429-4ce7-a1bf-cfccce47009a"># Bubbles ![Vercel deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=vercel&label=vercel) ![Render deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=render&label=render) ![BetterStack deployments](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=betterstack&label=betterstack) ![supabase](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=supabase&label=supabase) ![Upstash-redis](https://img.shields.io/github/deployments/binaryshrey/bubbles/production?style=flat&logo=upstash&label=upstash) 
 
 Instantly Share & Celebrate Your Magical Moments - with Bubbles view-once album links that pops after 5 mins: [View](https://bubbles-inc.vercel.app/)
 
@@ -29,7 +29,25 @@ REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT=5
 ```
 
 - Include Google & Github Auth under Firebase Authentication
-- Include Firebase-Storage with prod db-rule:
+- Include Firebase-Storage with prod db-rule
+
+
+#### Supabase configs
+- Create Supabase PostgreSQL DB with below cols:
+
+| Col Name   | Col Type |
+| --------   | -------- |
+| link_id    | text  |
+| user_id    | text  |
+| user_email | text  |
+| album_id   | text  |
+| album_name | text  |
+| album_photos  | text  |
+| is_active  | bool  |
+| created_at | text  |
+| expires_at | text  |
+| viewed_by  | text  |
+| link_analytics  | json  |
 
 
 Development server runs at `http://localhost:3000`
