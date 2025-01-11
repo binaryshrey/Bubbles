@@ -50,6 +50,16 @@ REACT_APP_BUBBLE_ALBUM_PICS_SIZE_LIMIT=5
 | link_analytics  | json  |
 
 
+- Supabase Buckets
+
+  
+  avatars
+  links
+  resumes
+  images
+
+
+
 Development server runs at `http://localhost:3000`
 
 
