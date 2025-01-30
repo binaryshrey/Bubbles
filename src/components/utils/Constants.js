@@ -1,5 +1,5 @@
 export const IP_URI = "https://api.ipify.org"
-export const BASE_API_URI = "https://bubbles-api-a6hm.onrender.com"
+export const BASE_API_URI = "https://bubbles-api-rqtz.onrender.com"
 export const BASE_API_URI_LOCAL = "http://localhost:8000"
 export const BASE_APP_URI = "https://bubbles-inc.vercel.app"
 export const BASE_APP_URI_LOCAL = "http://localhost:3000"
